@@ -1,0 +1,709 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1. 프로그램 개발 환경 &#8212; 파이썬 데이터 분석</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css@digest=dfe6caa3a7d634c4db9b.css" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css@digest=dfe6caa3a7d634c4db9b.css" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css@digest=dfe6caa3a7d634c4db9b.css" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css@digest=dfe6caa3a7d634c4db9b.css" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css@v=fa44fd50.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css@v=a3416100.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css@v=13237357.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css@v=76b2166b.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css@v=be8a1c11.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css@v=4fa983c6.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css@v=ca93fcec.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css@v=95c83b7e.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js@digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js@digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js@digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js@v=9eb32ce0"></script>
+    <script src="_static/doctools.js@v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js@v=dc90522c"></script>
+    <script src="_static/clipboard.min.js@v=a7894cd8"></script>
+    <script src="_static/copybutton.js@v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js@v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js@v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js@v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js@v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'python_basic_1';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="2. 기초 문법" href="python_basic_2.html" />
+    <link rel="prev" title="소개" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="python_basic_1.html#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">파이썬 데이터 분석</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">파이썬 기초</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="python_basic_1.html#">1. 프로그램 개발 환경</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_2.html">2. 기초 문법</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_3.html">3. 기초 자료형</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_4.html">4. 제어문</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_5.html">5. 모음 자료형</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_6.html">6. 함수</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_7.html">7. 파일</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_8.html">8. 모듈</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_9.html">9. 객체 지향 프로그래밍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="from_scratch_1.html">10. 선형대수 기초</a></li>
+<li class="toctree-l1"><a class="reference internal" href="from_scratch_2.html">11. 통계 기초</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">넘파이</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="numpy_1.html">12. 넘파이 어레이</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numpy_2.html">13. 어레이 인덱싱</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numpy_3.html">14. 어레이 중심 프로그래밍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numpy_4.html">15. 어레이 변형</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numpy_5.html">16. 실전 예제: 붓꽃 데이터 분석</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">판다스</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="pandas_1.html">17. 판다스 데이터프레임</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pandas_2.html">18. 데이터프레임 인덱싱</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pandas_3.html">19. 데이터프레임 중심 프로그래밍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pandas_4.html">20. 판다스 활용: 기초 통계</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pandas_5.html">21. 데이터 결합/합병</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pandas_6.html">22. 다중 인덱스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pandas_7.html">23. 데이터 그룹화</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">데이터 시각화</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="visualization_1.html">24. matplotlib.pyplot 1부</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization_2.html">25. matplotlib.pyplot 2부</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization_3.html">26. 판다스 시각화 도구</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization_4.html">27. Seaborn 시각화 라이브러리</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">시계열 데이터</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="pandas_timeseries.html">28. 시계열 데이터</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">실전 데이터 분석</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="casestudy_titanic.html">29. 타이타닉 데이터 분석</a></li>
+<li class="toctree-l1"><a class="reference internal" href="casestudy_california_housing.html">30. 캘리포니아 주택 가격</a></li>
+<li class="toctree-l1"><a class="reference internal" href="casestudy_oecd_bli.html">31. OECD 국가의 삶의 만족도</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/codingalzi/datapy/blob/master/jupyter-book/python_basic_1.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/codingalzi/datapy" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/codingalzi/datapy/issues/new?title=Issue%20on%20page%20%2Fpython_basic_1.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/python_basic_1.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>프로그램 개발 환경</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="python_basic_1.html#id2">1.1. 오프라인 개발 환경</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="python_basic_1.html#id3">1.1.1. 아나콘다 파이썬 패키지</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="python_basic_1.html#id4">1.1.2. 아나콘다와 주피터 노트북</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="python_basic_1.html#vs-code">1.1.3. 아나콘다와 비주얼 스튜디오 코드(VS Code)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="python_basic_1.html#id5">1.2. 클라우드 개발 환경</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="python_basic_1.html#id6">1.2.1. 구글 코랩</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="python_basic_1.html#id7">1.2.2. 깃허브 코드스페이스</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1><span class="section-number">1. </span>프로그램 개발 환경<a class="headerlink" href="python_basic_1.html#id1" title="Link to this heading">#</a></h1>
+<p>파이썬으로 프로그램을 작성하려면 개발 환경을 준비해야 한다.
+파이썬 프로그램 개발 환경은 크게 오프라인 개발 환경과 클라우드 개발 환경으로 나뉜다.</p>
+<ul class="simple">
+<li><p>오프라인 개발 환경: 파이썬 편집기와 파이썬 실행기를 개인 컴퓨터에 직접 설치해서 활용하는 방식</p></li>
+<li><p>클라우드 개발 환경: 웹브라우저를 이용하여 특정 사이트에서 파이썬 편집기와 파이썬 실행기를 활용하는 방식</p></li>
+</ul>
+<p>프로그래밍에 어느 정도 친숙하다면 오프라인 개발 환경을 이용할 것을 권장한다.
+반면에 프로그래밍이 처음이라면 먼저 클라우드 방식을 사용해서 파이썬과 어느 정도 친숙해진 다음에 오프라인 방식을 시도할 것을 추천한다.</p>
+<section id="id2">
+<h2><span class="section-number">1.1. </span>오프라인 개발 환경<a class="headerlink" href="python_basic_1.html#id2" title="Link to this heading">#</a></h2>
+<p>개발자가 직접 자신의 컴퓨터에 프로그램 개발 환경을 설정할 수 있다.
+다양한 방식이 존재하지만 여기서는 아나콘다 파이썬 패키지를 이용하는 방법만 소개한다.</p>
+<section id="id3">
+<h3><span class="section-number">1.1.1. </span>아나콘다 파이썬 패키지<a class="headerlink" href="python_basic_1.html#id3" title="Link to this heading">#</a></h3>
+<p>파이썬 프로그램 개발 환경 설치가 처음이라면
+데이터 분석 관련 중요 라이브러리, 스파이더 편집기, 주피터 노트북을 모두 포함하는
+<a class="reference external" href="https://www.anaconda.com">아나콘다<font size='2'>Anaconda</font> 파이썬 패키지</a>를 추천한다.</p>
+</section>
+<section id="id4">
+<h3><span class="section-number">1.1.2. </span>아나콘다와 주피터 노트북<a class="headerlink" href="python_basic_1.html#id4" title="Link to this heading">#</a></h3>
+<p><a class="reference external" href="https://jupyter.org">주피터 노트북<font size='2'>Jupyter notebook</font></a>은 웹브라우저에서 파이썬 프로그램을 직접 실행하면서
+동시에 문서 작성을 지원하는 일종의 문서 편집기이다.
+주피터 노트북은 셀<font size='2'>cell</font>이라 불리는 작은 입력창으로 구성된다.
+셀은 크게 코드 셀과 텍스트 셀로 구분된다.</p>
+<ul class="simple">
+<li><p>코드 셀: 파이썬 코드를 작성하고 실행할 수 있는 셀</p></li>
+<li><p>텍스트 셀: 일반 문서를 작성할 수 있는 셀</p></li>
+</ul>
+<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/pybook/master/jupyter-book/images/jupyter-notebook02.png" style="width:100%"></div><div class="note admonition">
+<p class="admonition-title">아나콘다 설치와 주피터 노트북 사용법</p>
+<p>아나콘다의 설치 과정과 주피터 노트북의 기초 사용법에 대한 보다 상세한 설명을 아래 링크에서 확인할 수 있다.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://youtu.be/dJfq-eCi7KI?si=gvHP7QO6hLSr6xxj&amp;amp;t=19">나도코딩: 아나콘다 환경 설정 및 주피터 노트북 사용법</a></p></li>
+<li><p><a class="reference external" href="https://codingalzi.github.io/pybook/environment_setting.html#sec-anaconda-install">아나콘다 설치 문서</a></p></li>
+</ul>
+</div>
+</section>
+<section id="vs-code">
+<h3><span class="section-number">1.1.3. </span>아나콘다와 비주얼 스튜디오 코드(VS Code)<a class="headerlink" href="python_basic_1.html#vs-code" title="Link to this heading">#</a></h3>
+<p>대형 프로젝트를 진행하면 많은 코드 파일을
+작성하고 관리해야 한다.
+이때 코드 편집과 실행, 디버깅, 파일 관리 등
+프로그램 개발 관련 모든 작업을 통합해서 지원하는
+통합 개발 환경을 사용한다.
+일명 <strong>IDE</strong><font size="2">Interactive Development Environment</font>라고 불리는
+통합 개발 환경을 지원하는 대표적인 상용 앱과 무료 앱은 다음과 같다.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://code.visualstudio.com/docs/languages/python">비주얼 스튜디오 코드<font size="2">Visual Studio Code</font></a>:
+마이크로소프트에서 지원하며, 현재 가장 인기 있는 무료 프로그램.
+파이썬 뿐만 아니라 거의 모든 프로그래밍 언어를 위한 통합 개발 환경 지원.</p></li>
+<li><p><a class="reference external" href="https://www.jetbrains.com/pycharm">파이참<font size="2">Pycharm</font></a>: 가장 인기있는 상용 프로그램.
+Pro 와 Community 두 버전을 지원하며 입문자는 무료 버전인 Community 추천.</p></li>
+</ul>
+<p>여기서는 일명 VS Code라 불리는 비주얼 스튜디오 코드<font size='2'>Visual Studio Code</font>를
+추천한다.
+전통적인 IDE 역할과 더불어 주피터 노트북도 지원한다.
+VS Code의 설치 과정과 사용법은 아래 링크를 참고한다.
+단, 여기서는 아나콘다 파이썬 패키지가 설치되어 있다고 가정한다.</p>
+<ul class="simple">
+<li><p>VS Code 설치 설명 문서: <a class="reference external" href="https://codingalzi.github.io/pybook/environment_setting.html#sec-vs-code">VS Code 설치</a></p></li>
+<li><p>간단한 설명: <a class="reference external" href="https://www.youtube.com/watch?v=8FyFXwlaod0">예술하는 개발자: 쉽고 빠른 Visual Studio Code와 파이썬 설치!</a></p></li>
+<li><p>보다 자세한 설명: <a class="reference external" href="https://www.youtube.com/watch?v=K8qVH8V0VvY">생활코딩: Visual Studio Code 기본 사용법</a></p></li>
+</ul>
+</section>
+</section>
+<section id="id5">
+<h2><span class="section-number">1.2. </span>클라우드 개발 환경<a class="headerlink" href="python_basic_1.html#id5" title="Link to this heading">#</a></h2>
+<p>파이썬 프로그램 개발 환경을 지원하는 많은 클라우드 서비스가 존재한다.
+여기서는 구글 코랩, 깃허브 코드스페이스, 레플릿 세 개의 서비스를 소개한다.</p>
+<section id="id6">
+<h3><span class="section-number">1.2.1. </span>구글 코랩<a class="headerlink" href="python_basic_1.html#id6" title="Link to this heading">#</a></h3>
+<p><a class="reference external" href="https://colab.research.google.com/?hl=ko">구글 코랩<font size="2">Google Colab</font></a>은
+파이썬 전용 클라우드 주피터 노트북을 제공한다.
+웹브라우저를 이용하여 접속하면 어떤 준비 없이 바로 파이썬 프로그래밍을 시작할 수 있다.</p>
+<p><strong>전제 조건</strong></p>
+<p>구글 계정이 있어야 한다.</p>
+<p><strong>구글 코랩 사용법</strong></p>
+<p>아래 링크를 통해 간단한 사용법을 익힌다.</p>
+<ul class="simple">
+<li><p>입문용: <a class="reference external" href="https://www.youtube.com/watch?v=91E0qenm7W4">유튜버 봉수골 개발자 이선비의 동영상</a></p></li>
+</ul>
+<p>보다 상세한 설명은 아래 링크를 참고한다.</p>
+<ul class="simple">
+<li><p>구글 코랩 고급 기능 설명: <a class="reference external" href="https://www.youtube.com/watch?v=rNgswRZ2C1Y">TensorFlow 팀의 동영상</a></p></li>
+</ul>
+</section>
+<section id="id7">
+<h3><span class="section-number">1.2.2. </span>깃허브 코드스페이스<a class="headerlink" href="python_basic_1.html#id7" title="Link to this heading">#</a></h3>
+<p><a class="reference external" href="https://github.com/features/codespaces">깃허브 코드스페이스<font size='2'>Github Codespaces</font></a>는 깃허브에서 제공하는 클라우드 통합 개발 환경이다.
+VS Code를 기본 편집기로 사용하기에 주피터 노트북도 활용할 수 있다.</p>
+<p><strong>전제 조건</strong></p>
+<p><a class="reference external" href="https://github.com">깃허브<font size='2'>GitHub</font></a> 계정과 함께 간단한 사용법을 알고 있어야 한다.
+깃허브에 대한 친절하며 자세한 설명은 아래 링크를 참고한다.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.youtube.com/playlist?list=PLuHgQVnccGMDWjb0TWItMCfDWDs8Y3Oo7">생활코딩: GitHub</a></p></li>
+</ul>
+<p><strong>깃허브 코드스페이스 사용법</strong></p>
+<p>아래 링크에서 코드스페이스의 기능과 간단한 사용법을 익힌다.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://velog.io/&#64;profile_exe/Github-Codespaces">Github Codespaces로 개발하기</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=kvJf8s18Vr4">How to use GitHub Codespaces for Coding and Data Science</a></p></li>
+</ul>
+<p><strong>추가 추천</strong></p>
+<p>프로그램 개발자가 기본 상식으로 알고 있어야 하는 협업 도구인 Git과
+VS Code를 이용한 Git, GitHub 활용법을 공부할 것을 추천한다.</p>
+<ul class="simple">
+<li><p>Git 이해: <a class="reference external" href="https://www.youtube.com/playlist?list=PLuHgQVnccGMCNJESahrVV-uYGMNYK_vMf">생활코딩: Git</a></p></li>
+<li><p>VS Code와 Git: <a class="reference external" href="https://www.youtube.com/playlist?list=PLuHgQVnccGMAQvSVKdXFiOo51HUD8iQQm">생활코딩: Visual Studio Code 로 다루는 Git</a></p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">소개</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="python_basic_2.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>기초 문법</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="python_basic_1.html#id2">1.1. 오프라인 개발 환경</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="python_basic_1.html#id3">1.1.1. 아나콘다 파이썬 패키지</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="python_basic_1.html#id4">1.1.2. 아나콘다와 주피터 노트북</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="python_basic_1.html#vs-code">1.1.3. 아나콘다와 비주얼 스튜디오 코드(VS Code)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="python_basic_1.html#id5">1.2. 클라우드 개발 환경</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="python_basic_1.html#id6">1.2.1. 구글 코랩</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="python_basic_1.html#id7">1.2.2. 깃허브 코드스페이스</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 코딩알지
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js@digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js@digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

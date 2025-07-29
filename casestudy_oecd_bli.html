@@ -1,0 +1,3803 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>31. OECD 국가의 삶의 만족도 &#8212; 파이썬 데이터 분석</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css@digest=dfe6caa3a7d634c4db9b.css" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css@digest=dfe6caa3a7d634c4db9b.css" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css@digest=dfe6caa3a7d634c4db9b.css" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css@digest=dfe6caa3a7d634c4db9b.css" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css@v=fa44fd50.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css@v=a3416100.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css@v=13237357.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css@v=76b2166b.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css@v=be8a1c11.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css@v=4fa983c6.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css@v=ca93fcec.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css@v=95c83b7e.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js@digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js@digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js@digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js@v=9eb32ce0"></script>
+    <script src="_static/doctools.js@v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js@v=dc90522c"></script>
+    <script src="_static/clipboard.min.js@v=a7894cd8"></script>
+    <script src="_static/copybutton.js@v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js@v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js@v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js@v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js@v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'casestudy_oecd_bli';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="30. 캘리포니아 주택 가격" href="casestudy_california_housing.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="casestudy_oecd_bli.html#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">파이썬 데이터 분석</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">파이썬 기초</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="python_basic_1.html">1. 프로그램 개발 환경</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_2.html">2. 기초 문법</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_3.html">3. 기초 자료형</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_4.html">4. 제어문</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_5.html">5. 모음 자료형</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_6.html">6. 함수</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_7.html">7. 파일</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_8.html">8. 모듈</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_9.html">9. 객체 지향 프로그래밍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="from_scratch_1.html">10. 선형대수 기초</a></li>
+<li class="toctree-l1"><a class="reference internal" href="from_scratch_2.html">11. 통계 기초</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">넘파이</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="numpy_1.html">12. 넘파이 어레이</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numpy_2.html">13. 어레이 인덱싱</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numpy_3.html">14. 어레이 중심 프로그래밍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numpy_4.html">15. 어레이 변형</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numpy_5.html">16. 실전 예제: 붓꽃 데이터 분석</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">판다스</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="pandas_1.html">17. 판다스 데이터프레임</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pandas_2.html">18. 데이터프레임 인덱싱</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pandas_3.html">19. 데이터프레임 중심 프로그래밍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pandas_4.html">20. 판다스 활용: 기초 통계</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pandas_5.html">21. 데이터 결합/합병</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pandas_6.html">22. 다중 인덱스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pandas_7.html">23. 데이터 그룹화</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">데이터 시각화</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="visualization_1.html">24. matplotlib.pyplot 1부</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization_2.html">25. matplotlib.pyplot 2부</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization_3.html">26. 판다스 시각화 도구</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization_4.html">27. Seaborn 시각화 라이브러리</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">시계열 데이터</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="pandas_timeseries.html">28. 시계열 데이터</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">실전 데이터 분석</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="casestudy_titanic.html">29. 타이타닉 데이터 분석</a></li>
+<li class="toctree-l1"><a class="reference internal" href="casestudy_california_housing.html">30. 캘리포니아 주택 가격</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="casestudy_oecd_bli.html#">31. OECD 국가의 삶의 만족도</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/codingalzi/datapy/blob/master/jupyter-book/casestudy_oecd_bli.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/codingalzi/datapy" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/codingalzi/datapy/issues/new?title=Issue%20on%20page%20%2Fcasestudy_oecd_bli.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/casestudy_oecd_bli.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>OECD 국가의 삶의 만족도</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="casestudy_oecd_bli.html#id1">31.1. 주요 내용</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="casestudy_oecd_bli.html#id2">31.2. 데이터 구하기</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="casestudy_oecd_bli.html#id3">31.3. 데이터 적재, 정제, 전처리</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="casestudy_oecd_bli.html#gdp">31.3.1. 1인당 GDP 데이터 적재, 정제, 전처리</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="casestudy_oecd_bli.html#id4">31.3.2. 삶의 만족도 데이터 적재, 정제, 전처리</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="casestudy_oecd_bli.html#id5">31.4. 데이터 합병</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="casestudy_oecd_bli.html#id6">31.5. 그래프 그리기</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="oecd">
+<h1><span class="section-number">31. </span>OECD 국가의 삶의 만족도<a class="headerlink" href="casestudy_oecd_bli.html#oecd" title="Link to this heading">#</a></h1>
+<p><strong>참고:</strong> 오렐리앙 제롱의 <a class="reference external" href="https://github.com/ageron/handson-ml2">&lt;핸즈온 머신러닝(2판)&gt;</a>
+1장의 소스코드를 사용합니다.</p>
+<section id="id1">
+<h2><span class="section-number">31.1. </span>주요 내용<a class="headerlink" href="casestudy_oecd_bli.html#id1" title="Link to this heading">#</a></h2>
+<p>1인당 <a class="reference external" href="https://ko.wikipedia.org/wiki/%EA%B5%AD%EB%82%B4%EC%B4%9D%EC%83%9D%EC%82%B0">GDP(국내총생산)</a>와 삶의 만족도 사이의
+선형 관계를 확인한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 모듈: 넘파이와 판다스</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>판다스 기본 설정</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_columns&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>그래프 그리기</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id2">
+<h2><span class="section-number">31.2. </span>데이터 구하기<a class="headerlink" href="casestudy_oecd_bli.html#id2" title="Link to this heading">#</a></h2>
+<p>1인당 GDP와 삶의 만족도 데이터셋은 아래 링크에서 구한다.</p>
+<ul class="simple">
+<li><p>국가별 1인당 GDP 데이터:
+<a class="reference external" href="https://www.imf.org/en/home">국제통화기금(IMF)</a>의
+<a class="reference external" href="https://www.imf.org/en/Publications/SPROLLS/world-economic-outlook-databases#sort=%40imfdate%20descending">세계 경제전망 데이터베이스</a>.</p></li>
+<li><p><a class="reference external" href="https://ko.wikipedia.org/wiki/%EA%B2%BD%EC%A0%9C%ED%98%91%EB%A0%A5%EA%B0%9C%EB%B0%9C%EA%B8%B0%EA%B5%AC">OECD</a>
+회원 국가별 “삶의 만족도”<font size='2'>life satisfaction</font> 데이터:
+<a class="reference external" href="https://stats.oecd.org/Index.aspx?DataSetCode=BLI">더 나은 삶의 지수<font size='2'>Better Life Index</font>(BLI)</a>.</p></li>
+</ul>
+<p>훈련 데이터 구하는 과정을 여기서는
+특정 서버에 저장된 다음 두 개의 csv 파일을 다운로드하는 것으로 대체한다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">gdp_per_capita_2015.csv</span></code>: IMF(국제통화기금)에 제공하는 1인당 국내총생산 데이터(GDP) 데이터</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">oecd_bli_2015.csv</span></code>: 2015년도 기준 OECD 국가들의 ‘더 나은 삶의 지수’(BLI) 데이터</p></li>
+</ul>
+<p>최종적으로 아래 표와 같은 데이터를 생성해야 하는데 언급된 데이터 파일을 다운로드 하면 전혀
+다른 모양의 데이터가 파일에 포함되어 있다.
+이어지는 3단계에서 원본 데이터 파일에서 아래 모양의 표를 어떻게 유도해낼 수 있는지
+자세히 설명한다.
+설명 이해가 어렵다면 4단계로 넘아가도 선형회귀 모델의 훈련 과정을 이해할 수 있다.
+하지만 훈련 보다는 데이터를 준비하는 과정이 일반적으로 더 중요하기에 3단계를
+최대한 이해하도록 노력할 것을 권장한다.</p>
+<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/datapy/master/jupyter-book/images/oecd_bli-1.png"style="width:300px;"/></div></section>
+<section id="id3">
+<h2><span class="section-number">31.3. </span>데이터 적재, 정제, 전처리<a class="headerlink" href="casestudy_oecd_bli.html#id3" title="Link to this heading">#</a></h2>
+<p>컴퓨터에 저장된 또는 다운로드된 데이터는 일반적으로 바로 모델 훈련에 사용할 수 없으며,
+데이터 적재, 데이터 정제, 데이터 전처리 등의 과정을 거쳐야 비로소 모델 훈련에 활용될 수 있다.</p>
+<ul class="simple">
+<li><p><strong>데이터 적재</strong>(data loading): 서버에 존재하거나 컴퓨터에 저장되어 있는 파일을
+특정 자료형의 값으로 불러오는 과정</p></li>
+<li><p><strong>데이터 정제</strong>(data cleaning): 적재된 데이터 셋에 포함된 오류, 부정확한 값,
+누락된 값, 상관없는 값 등을 제거, 수정, 보완하는 과정</p></li>
+<li><p><strong>데이터 전처리</strong>(data preprocessing): 정제된 데이터 셋을 모델 훈련에 적절한 형식으로 변환하거나
+적절한 내용의 데이터를 추가하거나 삭제하는 과정</p></li>
+</ul>
+<section id="gdp">
+<h3><span class="section-number">31.3.1. </span>1인당 GDP 데이터 적재, 정제, 전처리<a class="headerlink" href="casestudy_oecd_bli.html#gdp" title="Link to this heading">#</a></h3>
+<p>2015년 기준 국가별 1인당 GDP 관련 데이터가 저장되어 있는 서버 주소는 다음과 같다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">datapath</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/codingalzi/handson-ml3/master/notebooks/data/lifesat/&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>판다스의 <code class="docutils literal notranslate"><span class="pre">read_csv()</span></code> 함수는 지정된 경로에 저장된 csv 을 판다스의 데이터프레임 객체로 적재한다.
+적재할 때 사용되는 옵션 인자는 다음과 같다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">thousands=','</span></code>: 1000단위로 쉼표 찍기</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">delimiter='\t'</span></code>: 탭(tab)으로 열 구분</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">encoding='latin1'</span></code>: 인코딩 방식 지정. 파일에서 사용된 ‘Côte d’Ivoire’(코트디브와르)와 같은 특수 알파벳을 사용하는 국가명 처리 용도임.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">na_values=&quot;n/a&quot;</span></code>: 결측치를 ‘NaN’으로 처리.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdp_per_capita_2015</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">datapath</span> <span class="o">+</span> <span class="s2">&quot;gdp_per_capita_2015.csv&quot;</span><span class="p">,</span> 
+                             <span class="n">thousands</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> 
+                             <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span>
+                             <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;latin1&#39;</span><span class="p">,</span> 
+                             <span class="n">na_values</span><span class="o">=</span><span class="s2">&quot;n/a&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>총 190개 국가의 1인당 GDP 정보를 담고 있다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdp_per_capita_2015</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Country</th>
+      <th>Subject Descriptor</th>
+      <th>Units</th>
+      <th>Scale</th>
+      <th>Country/Series-specific Notes</th>
+      <th>2015</th>
+      <th>Estimates Start After</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Afghanistan</td>
+      <td>Gross domestic product per capita, current prices</td>
+      <td>U.S. dollars</td>
+      <td>Units</td>
+      <td>See notes for:  Gross domestic product, curren...</td>
+      <td>599.994</td>
+      <td>2013.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Albania</td>
+      <td>Gross domestic product per capita, current prices</td>
+      <td>U.S. dollars</td>
+      <td>Units</td>
+      <td>See notes for:  Gross domestic product, curren...</td>
+      <td>3995.383</td>
+      <td>2010.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Algeria</td>
+      <td>Gross domestic product per capita, current prices</td>
+      <td>U.S. dollars</td>
+      <td>Units</td>
+      <td>See notes for:  Gross domestic product, curren...</td>
+      <td>4318.135</td>
+      <td>2014.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Angola</td>
+      <td>Gross domestic product per capita, current prices</td>
+      <td>U.S. dollars</td>
+      <td>Units</td>
+      <td>See notes for:  Gross domestic product, curren...</td>
+      <td>4100.315</td>
+      <td>2014.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Antigua and Barbuda</td>
+      <td>Gross domestic product per capita, current prices</td>
+      <td>U.S. dollars</td>
+      <td>Units</td>
+      <td>See notes for:  Gross domestic product, curren...</td>
+      <td>14414.302</td>
+      <td>2011.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>185</th>
+      <td>Vietnam</td>
+      <td>Gross domestic product per capita, current prices</td>
+      <td>U.S. dollars</td>
+      <td>Units</td>
+      <td>See notes for:  Gross domestic product, curren...</td>
+      <td>2088.344</td>
+      <td>2012.0</td>
+    </tr>
+    <tr>
+      <th>186</th>
+      <td>Yemen</td>
+      <td>Gross domestic product per capita, current prices</td>
+      <td>U.S. dollars</td>
+      <td>Units</td>
+      <td>See notes for:  Gross domestic product, curren...</td>
+      <td>1302.940</td>
+      <td>2008.0</td>
+    </tr>
+    <tr>
+      <th>187</th>
+      <td>Zambia</td>
+      <td>Gross domestic product per capita, current prices</td>
+      <td>U.S. dollars</td>
+      <td>Units</td>
+      <td>See notes for:  Gross domestic product, curren...</td>
+      <td>1350.151</td>
+      <td>2010.0</td>
+    </tr>
+    <tr>
+      <th>188</th>
+      <td>Zimbabwe</td>
+      <td>Gross domestic product per capita, current prices</td>
+      <td>U.S. dollars</td>
+      <td>Units</td>
+      <td>See notes for:  Gross domestic product, curren...</td>
+      <td>1064.350</td>
+      <td>2012.0</td>
+    </tr>
+    <tr>
+      <th>189</th>
+      <td>International Monetary Fund, World Economic Ou...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>190 rows × 7 columns</p>
+</div></div></div>
+</div>
+<p>국가명을 행 인덱스로 지정한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdp_per_capita_2015</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;Country&quot;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">gdp_per_capita_2015</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Subject Descriptor</th>
+      <th>Units</th>
+      <th>Scale</th>
+      <th>Country/Series-specific Notes</th>
+      <th>2015</th>
+      <th>Estimates Start After</th>
+    </tr>
+    <tr>
+      <th>Country</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Afghanistan</th>
+      <td>Gross domestic product per capita, current prices</td>
+      <td>U.S. dollars</td>
+      <td>Units</td>
+      <td>See notes for:  Gross domestic product, curren...</td>
+      <td>599.994</td>
+      <td>2013.0</td>
+    </tr>
+    <tr>
+      <th>Albania</th>
+      <td>Gross domestic product per capita, current prices</td>
+      <td>U.S. dollars</td>
+      <td>Units</td>
+      <td>See notes for:  Gross domestic product, curren...</td>
+      <td>3995.383</td>
+      <td>2010.0</td>
+    </tr>
+    <tr>
+      <th>Algeria</th>
+      <td>Gross domestic product per capita, current prices</td>
+      <td>U.S. dollars</td>
+      <td>Units</td>
+      <td>See notes for:  Gross domestic product, curren...</td>
+      <td>4318.135</td>
+      <td>2014.0</td>
+    </tr>
+    <tr>
+      <th>Angola</th>
+      <td>Gross domestic product per capita, current prices</td>
+      <td>U.S. dollars</td>
+      <td>Units</td>
+      <td>See notes for:  Gross domestic product, curren...</td>
+      <td>4100.315</td>
+      <td>2014.0</td>
+    </tr>
+    <tr>
+      <th>Antigua and Barbuda</th>
+      <td>Gross domestic product per capita, current prices</td>
+      <td>U.S. dollars</td>
+      <td>Units</td>
+      <td>See notes for:  Gross domestic product, curren...</td>
+      <td>14414.302</td>
+      <td>2011.0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>Vietnam</th>
+      <td>Gross domestic product per capita, current prices</td>
+      <td>U.S. dollars</td>
+      <td>Units</td>
+      <td>See notes for:  Gross domestic product, curren...</td>
+      <td>2088.344</td>
+      <td>2012.0</td>
+    </tr>
+    <tr>
+      <th>Yemen</th>
+      <td>Gross domestic product per capita, current prices</td>
+      <td>U.S. dollars</td>
+      <td>Units</td>
+      <td>See notes for:  Gross domestic product, curren...</td>
+      <td>1302.940</td>
+      <td>2008.0</td>
+    </tr>
+    <tr>
+      <th>Zambia</th>
+      <td>Gross domestic product per capita, current prices</td>
+      <td>U.S. dollars</td>
+      <td>Units</td>
+      <td>See notes for:  Gross domestic product, curren...</td>
+      <td>1350.151</td>
+      <td>2010.0</td>
+    </tr>
+    <tr>
+      <th>Zimbabwe</th>
+      <td>Gross domestic product per capita, current prices</td>
+      <td>U.S. dollars</td>
+      <td>Units</td>
+      <td>See notes for:  Gross domestic product, curren...</td>
+      <td>1064.350</td>
+      <td>2012.0</td>
+    </tr>
+    <tr>
+      <th>International Monetary Fund, World Economic Outlook Database, April 2016</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>190 rows × 6 columns</p>
+</div></div></div>
+</div>
+<p>이어서 1인당 GDP 데이터임을 명시하기 위해 열 이름 <code class="docutils literal notranslate"><span class="pre">&quot;2015&quot;</span></code>를 <code class="docutils literal notranslate"><span class="pre">&quot;GDP</span> <span class="pre">per</span> <span class="pre">capita&quot;</span></code>로 변경한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdp_per_capita_2015</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;2015&quot;</span><span class="p">:</span> <span class="s2">&quot;GDP per capita&quot;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
+
+<span class="n">gdp_per_capita_2015</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Subject Descriptor</th>
+      <th>Units</th>
+      <th>Scale</th>
+      <th>Country/Series-specific Notes</th>
+      <th>GDP per capita</th>
+      <th>Estimates Start After</th>
+    </tr>
+    <tr>
+      <th>Country</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Afghanistan</th>
+      <td>Gross domestic product per capita, current prices</td>
+      <td>U.S. dollars</td>
+      <td>Units</td>
+      <td>See notes for:  Gross domestic product, curren...</td>
+      <td>599.994</td>
+      <td>2013.0</td>
+    </tr>
+    <tr>
+      <th>Albania</th>
+      <td>Gross domestic product per capita, current prices</td>
+      <td>U.S. dollars</td>
+      <td>Units</td>
+      <td>See notes for:  Gross domestic product, curren...</td>
+      <td>3995.383</td>
+      <td>2010.0</td>
+    </tr>
+    <tr>
+      <th>Algeria</th>
+      <td>Gross domestic product per capita, current prices</td>
+      <td>U.S. dollars</td>
+      <td>Units</td>
+      <td>See notes for:  Gross domestic product, curren...</td>
+      <td>4318.135</td>
+      <td>2014.0</td>
+    </tr>
+    <tr>
+      <th>Angola</th>
+      <td>Gross domestic product per capita, current prices</td>
+      <td>U.S. dollars</td>
+      <td>Units</td>
+      <td>See notes for:  Gross domestic product, curren...</td>
+      <td>4100.315</td>
+      <td>2014.0</td>
+    </tr>
+    <tr>
+      <th>Antigua and Barbuda</th>
+      <td>Gross domestic product per capita, current prices</td>
+      <td>U.S. dollars</td>
+      <td>Units</td>
+      <td>See notes for:  Gross domestic product, curren...</td>
+      <td>14414.302</td>
+      <td>2011.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="id4">
+<h3><span class="section-number">31.3.2. </span>삶의 만족도 데이터 적재, 정제, 전처리<a class="headerlink" href="casestudy_oecd_bli.html#id4" title="Link to this heading">#</a></h3>
+<p>OECD 국가별 삶의 만족도 데이터는 ‘더 나은 삶의 지수’ 데이터 파일에 포함되어 있다.
+따라서 먼저 해당 csv 파일을 판다스의 데이터프레임 객체로 불러온 후에
+삶의 만족도와 관련된 내용을 추출하는 과정을 밟는다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pandas.read_csv()</span></code> 함수는 지정한 경로에 저장되어 있는 csv 파일을 다운로드하여 바로 데이터프레임 객체를
+생성한다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oecd_bli</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">datapath</span> <span class="o">+</span> <span class="s2">&quot;oecd_bli_2015.csv&quot;</span><span class="p">,</span> <span class="n">thousands</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>생성된 데이터프레임의 모양은 다음과 같다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oecd_bli</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(3292, 17)
+</pre></div>
+</div>
+</div>
+</div>
+<p>처음 5행를 살펴보자.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oecd_bli</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>LOCATION</th>
+      <th>Country</th>
+      <th>INDICATOR</th>
+      <th>Indicator</th>
+      <th>MEASURE</th>
+      <th>Measure</th>
+      <th>INEQUALITY</th>
+      <th>Inequality</th>
+      <th>Unit Code</th>
+      <th>Unit</th>
+      <th>PowerCode Code</th>
+      <th>PowerCode</th>
+      <th>Reference Period Code</th>
+      <th>Reference Period</th>
+      <th>Value</th>
+      <th>Flag Codes</th>
+      <th>Flags</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>AUS</td>
+      <td>Australia</td>
+      <td>HO_BASE</td>
+      <td>Dwellings without basic facilities</td>
+      <td>L</td>
+      <td>Value</td>
+      <td>TOT</td>
+      <td>Total</td>
+      <td>PC</td>
+      <td>Percentage</td>
+      <td>0</td>
+      <td>units</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1.1</td>
+      <td>E</td>
+      <td>Estimated value</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>AUT</td>
+      <td>Austria</td>
+      <td>HO_BASE</td>
+      <td>Dwellings without basic facilities</td>
+      <td>L</td>
+      <td>Value</td>
+      <td>TOT</td>
+      <td>Total</td>
+      <td>PC</td>
+      <td>Percentage</td>
+      <td>0</td>
+      <td>units</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>BEL</td>
+      <td>Belgium</td>
+      <td>HO_BASE</td>
+      <td>Dwellings without basic facilities</td>
+      <td>L</td>
+      <td>Value</td>
+      <td>TOT</td>
+      <td>Total</td>
+      <td>PC</td>
+      <td>Percentage</td>
+      <td>0</td>
+      <td>units</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>CAN</td>
+      <td>Canada</td>
+      <td>HO_BASE</td>
+      <td>Dwellings without basic facilities</td>
+      <td>L</td>
+      <td>Value</td>
+      <td>TOT</td>
+      <td>Total</td>
+      <td>PC</td>
+      <td>Percentage</td>
+      <td>0</td>
+      <td>units</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.2</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>CZE</td>
+      <td>Czech Republic</td>
+      <td>HO_BASE</td>
+      <td>Dwellings without basic facilities</td>
+      <td>L</td>
+      <td>Value</td>
+      <td>TOT</td>
+      <td>Total</td>
+      <td>PC</td>
+      <td>Percentage</td>
+      <td>0</td>
+      <td>units</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.9</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>국가별 삶의 만족도는 측정지표(<code class="docutils literal notranslate"><span class="pre">'Indicator'</span></code>) 라벨을 갖는 열에서
+<code class="docutils literal notranslate"><span class="pre">'Life</span> <span class="pre">satisfaction'</span></code>이라는 항목과 연관된다.
+총 24 종의 측정지표가 사용되며 그중에 하나임을 다음과 같이 확인할 수 있다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;Life satisfaction&#39;</span> <span class="ow">in</span> <span class="n">oecd_bli</span><span class="o">.</span><span class="n">Indicator</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>24 종의 측정지표가 사용된다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oecd_bli</span><span class="o">.</span><span class="n">Indicator</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(24,)
+</pre></div>
+</div>
+</div>
+</div>
+<p>각 측정지표는 다음과 같다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oecd_bli</span><span class="o">.</span><span class="n">Indicator</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;Dwellings without basic facilities&#39;, &#39;Housing expenditure&#39;,
+       &#39;Rooms per person&#39;, &#39;Household net adjusted disposable income&#39;,
+       &#39;Household net financial wealth&#39;, &#39;Employment rate&#39;,
+       &#39;Job security&#39;, &#39;Long-term unemployment rate&#39;, &#39;Personal earnings&#39;,
+       &#39;Quality of support network&#39;, &#39;Educational attainment&#39;,
+       &#39;Student skills&#39;, &#39;Years in education&#39;, &#39;Air pollution&#39;,
+       &#39;Water quality&#39;, &#39;Consultation on rule-making&#39;, &#39;Voter turnout&#39;,
+       &#39;Life expectancy&#39;, &#39;Self-reported health&#39;, &#39;Life satisfaction&#39;,
+       &#39;Assault rate&#39;, &#39;Homicide rate&#39;,
+       &#39;Employees working very long hours&#39;,
+       &#39;Time devoted to leisure and personal care&#39;], dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
+<p>그런데 삶의 만족도와 관련된 행이 OECD 회원국의 수인 36보다 많다.
+이는 삶의 만족도와 관련해서 데이터의 중복이 있다는 것을 의미한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mask</span> <span class="o">=</span> <span class="n">oecd_bli</span><span class="o">.</span><span class="n">Indicator</span> <span class="o">==</span> <span class="s1">&#39;Life satisfaction&#39;</span>
+<span class="n">oecd_life_sat</span> <span class="o">=</span> <span class="n">oecd_bli</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oecd_life_sat</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>LOCATION</th>
+      <th>Country</th>
+      <th>INDICATOR</th>
+      <th>Indicator</th>
+      <th>MEASURE</th>
+      <th>Measure</th>
+      <th>INEQUALITY</th>
+      <th>Inequality</th>
+      <th>Unit Code</th>
+      <th>Unit</th>
+      <th>PowerCode Code</th>
+      <th>PowerCode</th>
+      <th>Reference Period Code</th>
+      <th>Reference Period</th>
+      <th>Value</th>
+      <th>Flag Codes</th>
+      <th>Flags</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2669</th>
+      <td>AUS</td>
+      <td>Australia</td>
+      <td>SW_LIFS</td>
+      <td>Life satisfaction</td>
+      <td>L</td>
+      <td>Value</td>
+      <td>TOT</td>
+      <td>Total</td>
+      <td>AVSCORE</td>
+      <td>Average score</td>
+      <td>0</td>
+      <td>units</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>7.3</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2670</th>
+      <td>AUT</td>
+      <td>Austria</td>
+      <td>SW_LIFS</td>
+      <td>Life satisfaction</td>
+      <td>L</td>
+      <td>Value</td>
+      <td>TOT</td>
+      <td>Total</td>
+      <td>AVSCORE</td>
+      <td>Average score</td>
+      <td>0</td>
+      <td>units</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>6.9</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2671</th>
+      <td>BEL</td>
+      <td>Belgium</td>
+      <td>SW_LIFS</td>
+      <td>Life satisfaction</td>
+      <td>L</td>
+      <td>Value</td>
+      <td>TOT</td>
+      <td>Total</td>
+      <td>AVSCORE</td>
+      <td>Average score</td>
+      <td>0</td>
+      <td>units</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>6.9</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2672</th>
+      <td>CAN</td>
+      <td>Canada</td>
+      <td>SW_LIFS</td>
+      <td>Life satisfaction</td>
+      <td>L</td>
+      <td>Value</td>
+      <td>TOT</td>
+      <td>Total</td>
+      <td>AVSCORE</td>
+      <td>Average score</td>
+      <td>0</td>
+      <td>units</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>7.3</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2673</th>
+      <td>CZE</td>
+      <td>Czech Republic</td>
+      <td>SW_LIFS</td>
+      <td>Life satisfaction</td>
+      <td>L</td>
+      <td>Value</td>
+      <td>TOT</td>
+      <td>Total</td>
+      <td>AVSCORE</td>
+      <td>Average score</td>
+      <td>0</td>
+      <td>units</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>6.5</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>2843</th>
+      <td>CHL</td>
+      <td>Chile</td>
+      <td>SW_LIFS</td>
+      <td>Life satisfaction</td>
+      <td>L</td>
+      <td>Value</td>
+      <td>LW</td>
+      <td>Low</td>
+      <td>AVSCORE</td>
+      <td>Average score</td>
+      <td>0</td>
+      <td>units</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>6.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2844</th>
+      <td>EST</td>
+      <td>Estonia</td>
+      <td>SW_LIFS</td>
+      <td>Life satisfaction</td>
+      <td>L</td>
+      <td>Value</td>
+      <td>LW</td>
+      <td>Low</td>
+      <td>AVSCORE</td>
+      <td>Average score</td>
+      <td>0</td>
+      <td>units</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5.1</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2845</th>
+      <td>RUS</td>
+      <td>Russia</td>
+      <td>SW_LIFS</td>
+      <td>Life satisfaction</td>
+      <td>L</td>
+      <td>Value</td>
+      <td>LW</td>
+      <td>Low</td>
+      <td>AVSCORE</td>
+      <td>Average score</td>
+      <td>0</td>
+      <td>units</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5.4</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2846</th>
+      <td>SVN</td>
+      <td>Slovenia</td>
+      <td>SW_LIFS</td>
+      <td>Life satisfaction</td>
+      <td>L</td>
+      <td>Value</td>
+      <td>LW</td>
+      <td>Low</td>
+      <td>AVSCORE</td>
+      <td>Average score</td>
+      <td>0</td>
+      <td>units</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2847</th>
+      <td>OECD</td>
+      <td>OECD - Total</td>
+      <td>SW_LIFS</td>
+      <td>Life satisfaction</td>
+      <td>L</td>
+      <td>Value</td>
+      <td>LW</td>
+      <td>Low</td>
+      <td>AVSCORE</td>
+      <td>Average score</td>
+      <td>0</td>
+      <td>units</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5.9</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>179 rows × 17 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oecd_life_sat</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(179, 17)
+</pre></div>
+</div>
+</div>
+</div>
+<p>무엇이 중복되었는지를 알아내기 위해
+OECD 회원국가별로 <code class="docutils literal notranslate"><span class="pre">'Indicator'</span></code> 열에 포함된 24개 측정지표에 해당하는 값(value)만을 따로 추출해보자.
+즉, <a class="reference external" href="https://stats.oecd.org/Index.aspx?DataSetCode=BLI">‘더 나은 삶의 지수’(BLI, Better Life Index) 자료</a>에서
+볼 수 있는 아래 테이블 이미지와 같은 데이터프레임을 생성하고자 한다.</p>
+<ul class="simple">
+<li><p>행: OECD 회원국(<code class="docutils literal notranslate"><span class="pre">Country</span></code>)</p></li>
+<li><p>열: 측정지표(<code class="docutils literal notranslate"><span class="pre">Indicator</span></code>)</p></li>
+<li><p>항목 값: 국가별 지표 수치(<code class="docutils literal notranslate"><span class="pre">Value</span></code>)</p></li>
+</ul>
+<div align="center"><img src="https://raw.githubusercontent.com/codingalzi/datapy/master/jupyter-book/images/oecd_bli.png"/></div><p>이를 위해 국가명(<code class="docutils literal notranslate"><span class="pre">'Country'</span></code> 열의 항목)을 행의 인덱스 이름으로,
+<code class="docutils literal notranslate"><span class="pre">'Indicator'</span></code>의 항목을 열의 인덱스 이름으로 사용하는 데이터프레임을 생성한다.
+해당 열과 항목에 해당하는 값은 <code class="docutils literal notranslate"><span class="pre">'Value'</span></code> 열에 포함된 값을 사용한다.</p>
+<p>그런데 OECD의 원본 파일에는 각 측정지표의 값으로 국가별 소득 불평등(<code class="docutils literal notranslate"><span class="pre">'INEQUALITY'</span></code>)과 관련된 다섯 가지
+기준에 따라 다른 값이 포함되어 있다(위 이미지 좌상단 화살표 참조).</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>기준</p></th>
+<th class="head text-left"><p>기호</p></th>
+<th class="head text-left"><p>대상</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Total</p></td>
+<td class="text-left"><p>TOT</p></td>
+<td class="text-left"><p>전체 인구</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Men</p></td>
+<td class="text-left"><p>MN</p></td>
+<td class="text-left"><p>남성</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Wemen</p></td>
+<td class="text-left"><p>WMN</p></td>
+<td class="text-left"><p>여성</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>High</p></td>
+<td class="text-left"><p>HGH</p></td>
+<td class="text-left"><p>상위 소득</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Low</p></td>
+<td class="text-left"><p>LW</p></td>
+<td class="text-left"><p>하위 소득</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oecd_bli</span><span class="o">.</span><span class="n">INEQUALITY</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;TOT&#39;, &#39;MN&#39;, &#39;WMN&#39;, &#39;HGH&#39;, &#39;LW&#39;], dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">oecd_bli.INEQUALITY</span> <span class="pre">==</span> <span class="pre">'TOT'</span></code> 인 경우만 사용한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mask</span> <span class="o">=</span> <span class="n">oecd_bli</span><span class="o">.</span><span class="n">INEQUALITY</span> <span class="o">==</span> <span class="s1">&#39;TOT&#39;</span>
+<span class="n">oecd_bli</span> <span class="o">=</span> <span class="n">oecd_bli</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>888개로 샘플 수가 줄었다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oecd_bli</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(888, 17)
+</pre></div>
+</div>
+</div>
+</div>
+<p>여전히 888개의 데이터가 있는 이유는 ‘더 나은 삶’을 측정는 지표가 24종이고 36개의 OECD 회원국과 OECD 전체(<code class="docutils literal notranslate"><span class="pre">OECD</span> <span class="pre">-</span> <span class="pre">Total</span></code>)의 평균을 조사했기 때문이다.
+실제로 다음이 성립한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">36</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">24</span> <span class="o">==</span> <span class="mi">888</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>즉, <code class="docutils literal notranslate"><span class="pre">Country</span></code> 열에 36개의 국가와 OECD 전체(<code class="docutils literal notranslate"><span class="pre">OECD-Total</span></code>)가 각각 24번 사용되며 그때마다 다른 측정지표가 사용된다.
+예를 들어, 대한민국(Korea)가 24번 사용된 것을 다음과 같이 확인한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">oecd_bli</span><span class="p">[</span><span class="s1">&#39;Country&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Korea&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>24
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong><code class="docutils literal notranslate"><span class="pre">pivot()</span></code> 메서드</strong></p>
+<p>국가명(<code class="docutils literal notranslate"><span class="pre">'Country'</span></code> 열의 항목)을 행 인덱스의 라벨로,
+<code class="docutils literal notranslate"><span class="pre">'Indicator'</span></code>의 항목을 열 인덱스 라벨로 사용하면서
+해당 행과 열의 항목에는 <code class="docutils literal notranslate"><span class="pre">'Value'</span></code> 열에 포함된 값을 사용하는 데이터프레임을
+<code class="docutils literal notranslate"><span class="pre">pivot()</span></code> 메서드를 이용하여 생성한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oecd_bli</span> <span class="o">=</span> <span class="n">oecd_bli</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">&quot;Country&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;Indicator&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;Value&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>이제 총 36개 국가의 측정지표별 수치를 확인하면 다음과 같다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oecd_bli</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Indicator</th>
+      <th>Air pollution</th>
+      <th>Assault rate</th>
+      <th>Consultation on rule-making</th>
+      <th>Dwellings without basic facilities</th>
+      <th>Educational attainment</th>
+      <th>Employees working very long hours</th>
+      <th>Employment rate</th>
+      <th>Homicide rate</th>
+      <th>Household net adjusted disposable income</th>
+      <th>Household net financial wealth</th>
+      <th>Housing expenditure</th>
+      <th>Job security</th>
+      <th>Life expectancy</th>
+      <th>Life satisfaction</th>
+      <th>Long-term unemployment rate</th>
+      <th>Personal earnings</th>
+      <th>Quality of support network</th>
+      <th>Rooms per person</th>
+      <th>Self-reported health</th>
+      <th>Student skills</th>
+      <th>Time devoted to leisure and personal care</th>
+      <th>Voter turnout</th>
+      <th>Water quality</th>
+      <th>Years in education</th>
+    </tr>
+    <tr>
+      <th>Country</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Australia</th>
+      <td>13.0</td>
+      <td>2.1</td>
+      <td>10.5</td>
+      <td>1.1</td>
+      <td>76.0</td>
+      <td>14.02</td>
+      <td>72.0</td>
+      <td>0.8</td>
+      <td>31588.0</td>
+      <td>47657.0</td>
+      <td>20.0</td>
+      <td>4.8</td>
+      <td>82.1</td>
+      <td>7.3</td>
+      <td>1.08</td>
+      <td>50449.0</td>
+      <td>92.0</td>
+      <td>2.3</td>
+      <td>85.0</td>
+      <td>512.0</td>
+      <td>14.41</td>
+      <td>93.0</td>
+      <td>91.0</td>
+      <td>19.4</td>
+    </tr>
+    <tr>
+      <th>Austria</th>
+      <td>27.0</td>
+      <td>3.4</td>
+      <td>7.1</td>
+      <td>1.0</td>
+      <td>83.0</td>
+      <td>7.61</td>
+      <td>72.0</td>
+      <td>0.4</td>
+      <td>31173.0</td>
+      <td>49887.0</td>
+      <td>21.0</td>
+      <td>3.9</td>
+      <td>81.0</td>
+      <td>6.9</td>
+      <td>1.19</td>
+      <td>45199.0</td>
+      <td>89.0</td>
+      <td>1.6</td>
+      <td>69.0</td>
+      <td>500.0</td>
+      <td>14.46</td>
+      <td>75.0</td>
+      <td>94.0</td>
+      <td>17.0</td>
+    </tr>
+    <tr>
+      <th>Belgium</th>
+      <td>21.0</td>
+      <td>6.6</td>
+      <td>4.5</td>
+      <td>2.0</td>
+      <td>72.0</td>
+      <td>4.57</td>
+      <td>62.0</td>
+      <td>1.1</td>
+      <td>28307.0</td>
+      <td>83876.0</td>
+      <td>21.0</td>
+      <td>5.0</td>
+      <td>80.5</td>
+      <td>6.9</td>
+      <td>3.88</td>
+      <td>48082.0</td>
+      <td>94.0</td>
+      <td>2.2</td>
+      <td>74.0</td>
+      <td>509.0</td>
+      <td>15.71</td>
+      <td>89.0</td>
+      <td>87.0</td>
+      <td>18.9</td>
+    </tr>
+    <tr>
+      <th>Brazil</th>
+      <td>18.0</td>
+      <td>7.9</td>
+      <td>4.0</td>
+      <td>6.7</td>
+      <td>45.0</td>
+      <td>10.41</td>
+      <td>67.0</td>
+      <td>25.5</td>
+      <td>11664.0</td>
+      <td>6844.0</td>
+      <td>21.0</td>
+      <td>4.6</td>
+      <td>73.7</td>
+      <td>7.0</td>
+      <td>1.97</td>
+      <td>17177.0</td>
+      <td>90.0</td>
+      <td>1.6</td>
+      <td>69.0</td>
+      <td>402.0</td>
+      <td>14.97</td>
+      <td>79.0</td>
+      <td>72.0</td>
+      <td>16.3</td>
+    </tr>
+    <tr>
+      <th>Canada</th>
+      <td>15.0</td>
+      <td>1.3</td>
+      <td>10.5</td>
+      <td>0.2</td>
+      <td>89.0</td>
+      <td>3.94</td>
+      <td>72.0</td>
+      <td>1.5</td>
+      <td>29365.0</td>
+      <td>67913.0</td>
+      <td>21.0</td>
+      <td>6.4</td>
+      <td>81.5</td>
+      <td>7.3</td>
+      <td>0.90</td>
+      <td>46911.0</td>
+      <td>92.0</td>
+      <td>2.5</td>
+      <td>89.0</td>
+      <td>522.0</td>
+      <td>14.25</td>
+      <td>61.0</td>
+      <td>91.0</td>
+      <td>17.2</td>
+    </tr>
+    <tr>
+      <th>Chile</th>
+      <td>46.0</td>
+      <td>6.9</td>
+      <td>2.0</td>
+      <td>9.4</td>
+      <td>57.0</td>
+      <td>15.42</td>
+      <td>62.0</td>
+      <td>4.4</td>
+      <td>14533.0</td>
+      <td>17733.0</td>
+      <td>18.0</td>
+      <td>4.4</td>
+      <td>78.9</td>
+      <td>6.7</td>
+      <td>1.59</td>
+      <td>22101.0</td>
+      <td>86.0</td>
+      <td>1.2</td>
+      <td>59.0</td>
+      <td>436.0</td>
+      <td>14.41</td>
+      <td>49.0</td>
+      <td>73.0</td>
+      <td>16.5</td>
+    </tr>
+    <tr>
+      <th>Czech Republic</th>
+      <td>16.0</td>
+      <td>2.8</td>
+      <td>6.8</td>
+      <td>0.9</td>
+      <td>92.0</td>
+      <td>6.98</td>
+      <td>68.0</td>
+      <td>0.8</td>
+      <td>18404.0</td>
+      <td>17299.0</td>
+      <td>26.0</td>
+      <td>4.1</td>
+      <td>78.2</td>
+      <td>6.5</td>
+      <td>3.12</td>
+      <td>20338.0</td>
+      <td>85.0</td>
+      <td>1.4</td>
+      <td>60.0</td>
+      <td>500.0</td>
+      <td>14.98</td>
+      <td>59.0</td>
+      <td>85.0</td>
+      <td>18.1</td>
+    </tr>
+    <tr>
+      <th>Denmark</th>
+      <td>15.0</td>
+      <td>3.9</td>
+      <td>7.0</td>
+      <td>0.9</td>
+      <td>78.0</td>
+      <td>2.03</td>
+      <td>73.0</td>
+      <td>0.3</td>
+      <td>26491.0</td>
+      <td>44488.0</td>
+      <td>24.0</td>
+      <td>5.6</td>
+      <td>80.1</td>
+      <td>7.5</td>
+      <td>1.78</td>
+      <td>48347.0</td>
+      <td>95.0</td>
+      <td>1.9</td>
+      <td>72.0</td>
+      <td>498.0</td>
+      <td>16.06</td>
+      <td>88.0</td>
+      <td>94.0</td>
+      <td>19.4</td>
+    </tr>
+    <tr>
+      <th>Estonia</th>
+      <td>9.0</td>
+      <td>5.5</td>
+      <td>3.3</td>
+      <td>8.1</td>
+      <td>90.0</td>
+      <td>3.30</td>
+      <td>68.0</td>
+      <td>4.8</td>
+      <td>15167.0</td>
+      <td>7680.0</td>
+      <td>19.0</td>
+      <td>5.2</td>
+      <td>76.5</td>
+      <td>5.6</td>
+      <td>3.82</td>
+      <td>18944.0</td>
+      <td>89.0</td>
+      <td>1.5</td>
+      <td>54.0</td>
+      <td>526.0</td>
+      <td>14.90</td>
+      <td>64.0</td>
+      <td>79.0</td>
+      <td>17.5</td>
+    </tr>
+    <tr>
+      <th>Finland</th>
+      <td>15.0</td>
+      <td>2.4</td>
+      <td>9.0</td>
+      <td>0.6</td>
+      <td>85.0</td>
+      <td>3.58</td>
+      <td>69.0</td>
+      <td>1.4</td>
+      <td>27927.0</td>
+      <td>18761.0</td>
+      <td>22.0</td>
+      <td>6.9</td>
+      <td>80.7</td>
+      <td>7.4</td>
+      <td>1.73</td>
+      <td>40060.0</td>
+      <td>95.0</td>
+      <td>1.9</td>
+      <td>65.0</td>
+      <td>529.0</td>
+      <td>14.89</td>
+      <td>69.0</td>
+      <td>94.0</td>
+      <td>19.7</td>
+    </tr>
+    <tr>
+      <th>France</th>
+      <td>12.0</td>
+      <td>5.0</td>
+      <td>3.5</td>
+      <td>0.5</td>
+      <td>73.0</td>
+      <td>8.15</td>
+      <td>64.0</td>
+      <td>0.6</td>
+      <td>28799.0</td>
+      <td>48741.0</td>
+      <td>21.0</td>
+      <td>6.5</td>
+      <td>82.1</td>
+      <td>6.5</td>
+      <td>3.99</td>
+      <td>40242.0</td>
+      <td>87.0</td>
+      <td>1.8</td>
+      <td>67.0</td>
+      <td>500.0</td>
+      <td>15.33</td>
+      <td>80.0</td>
+      <td>82.0</td>
+      <td>16.4</td>
+    </tr>
+    <tr>
+      <th>Germany</th>
+      <td>16.0</td>
+      <td>3.6</td>
+      <td>4.5</td>
+      <td>0.1</td>
+      <td>86.0</td>
+      <td>5.25</td>
+      <td>73.0</td>
+      <td>0.5</td>
+      <td>31252.0</td>
+      <td>50394.0</td>
+      <td>21.0</td>
+      <td>3.1</td>
+      <td>81.0</td>
+      <td>7.0</td>
+      <td>2.37</td>
+      <td>43682.0</td>
+      <td>94.0</td>
+      <td>1.8</td>
+      <td>65.0</td>
+      <td>515.0</td>
+      <td>15.31</td>
+      <td>72.0</td>
+      <td>95.0</td>
+      <td>18.2</td>
+    </tr>
+    <tr>
+      <th>Greece</th>
+      <td>27.0</td>
+      <td>3.7</td>
+      <td>6.5</td>
+      <td>0.7</td>
+      <td>68.0</td>
+      <td>6.16</td>
+      <td>49.0</td>
+      <td>1.6</td>
+      <td>18575.0</td>
+      <td>14579.0</td>
+      <td>25.0</td>
+      <td>12.2</td>
+      <td>80.7</td>
+      <td>4.8</td>
+      <td>18.39</td>
+      <td>25503.0</td>
+      <td>83.0</td>
+      <td>1.2</td>
+      <td>74.0</td>
+      <td>466.0</td>
+      <td>14.91</td>
+      <td>64.0</td>
+      <td>69.0</td>
+      <td>18.6</td>
+    </tr>
+    <tr>
+      <th>Hungary</th>
+      <td>15.0</td>
+      <td>3.6</td>
+      <td>7.9</td>
+      <td>4.8</td>
+      <td>82.0</td>
+      <td>3.19</td>
+      <td>58.0</td>
+      <td>1.3</td>
+      <td>15442.0</td>
+      <td>13277.0</td>
+      <td>20.0</td>
+      <td>5.7</td>
+      <td>75.2</td>
+      <td>4.9</td>
+      <td>5.10</td>
+      <td>20948.0</td>
+      <td>87.0</td>
+      <td>1.1</td>
+      <td>57.0</td>
+      <td>487.0</td>
+      <td>15.04</td>
+      <td>62.0</td>
+      <td>77.0</td>
+      <td>17.6</td>
+    </tr>
+    <tr>
+      <th>Iceland</th>
+      <td>18.0</td>
+      <td>2.7</td>
+      <td>5.1</td>
+      <td>0.4</td>
+      <td>71.0</td>
+      <td>12.25</td>
+      <td>82.0</td>
+      <td>0.3</td>
+      <td>23965.0</td>
+      <td>43045.0</td>
+      <td>24.0</td>
+      <td>4.1</td>
+      <td>83.0</td>
+      <td>7.5</td>
+      <td>1.18</td>
+      <td>55716.0</td>
+      <td>96.0</td>
+      <td>1.5</td>
+      <td>77.0</td>
+      <td>484.0</td>
+      <td>14.61</td>
+      <td>81.0</td>
+      <td>97.0</td>
+      <td>19.8</td>
+    </tr>
+    <tr>
+      <th>Ireland</th>
+      <td>13.0</td>
+      <td>2.6</td>
+      <td>9.0</td>
+      <td>0.2</td>
+      <td>75.0</td>
+      <td>4.20</td>
+      <td>60.0</td>
+      <td>0.8</td>
+      <td>23917.0</td>
+      <td>31580.0</td>
+      <td>19.0</td>
+      <td>5.9</td>
+      <td>81.0</td>
+      <td>7.0</td>
+      <td>8.39</td>
+      <td>49506.0</td>
+      <td>96.0</td>
+      <td>2.1</td>
+      <td>82.0</td>
+      <td>516.0</td>
+      <td>15.19</td>
+      <td>70.0</td>
+      <td>80.0</td>
+      <td>17.6</td>
+    </tr>
+    <tr>
+      <th>Israel</th>
+      <td>21.0</td>
+      <td>6.4</td>
+      <td>2.5</td>
+      <td>3.7</td>
+      <td>85.0</td>
+      <td>16.03</td>
+      <td>67.0</td>
+      <td>2.3</td>
+      <td>22104.0</td>
+      <td>52933.0</td>
+      <td>21.0</td>
+      <td>5.0</td>
+      <td>81.8</td>
+      <td>7.4</td>
+      <td>0.79</td>
+      <td>28817.0</td>
+      <td>87.0</td>
+      <td>1.2</td>
+      <td>80.0</td>
+      <td>474.0</td>
+      <td>14.48</td>
+      <td>68.0</td>
+      <td>68.0</td>
+      <td>15.8</td>
+    </tr>
+    <tr>
+      <th>Italy</th>
+      <td>21.0</td>
+      <td>4.7</td>
+      <td>5.0</td>
+      <td>1.1</td>
+      <td>57.0</td>
+      <td>3.66</td>
+      <td>56.0</td>
+      <td>0.7</td>
+      <td>25166.0</td>
+      <td>54987.0</td>
+      <td>24.0</td>
+      <td>5.9</td>
+      <td>82.3</td>
+      <td>6.0</td>
+      <td>6.94</td>
+      <td>34561.0</td>
+      <td>90.0</td>
+      <td>1.4</td>
+      <td>66.0</td>
+      <td>490.0</td>
+      <td>14.98</td>
+      <td>75.0</td>
+      <td>71.0</td>
+      <td>16.8</td>
+    </tr>
+    <tr>
+      <th>Japan</th>
+      <td>24.0</td>
+      <td>1.4</td>
+      <td>7.3</td>
+      <td>6.4</td>
+      <td>94.0</td>
+      <td>22.26</td>
+      <td>72.0</td>
+      <td>0.3</td>
+      <td>26111.0</td>
+      <td>86764.0</td>
+      <td>22.0</td>
+      <td>2.4</td>
+      <td>83.2</td>
+      <td>5.9</td>
+      <td>1.67</td>
+      <td>35405.0</td>
+      <td>89.0</td>
+      <td>1.8</td>
+      <td>30.0</td>
+      <td>540.0</td>
+      <td>14.93</td>
+      <td>53.0</td>
+      <td>85.0</td>
+      <td>16.3</td>
+    </tr>
+    <tr>
+      <th>Korea</th>
+      <td>30.0</td>
+      <td>2.1</td>
+      <td>10.4</td>
+      <td>4.2</td>
+      <td>82.0</td>
+      <td>18.72</td>
+      <td>64.0</td>
+      <td>1.1</td>
+      <td>19510.0</td>
+      <td>29091.0</td>
+      <td>16.0</td>
+      <td>3.2</td>
+      <td>81.3</td>
+      <td>5.8</td>
+      <td>0.01</td>
+      <td>36354.0</td>
+      <td>72.0</td>
+      <td>1.4</td>
+      <td>35.0</td>
+      <td>542.0</td>
+      <td>14.63</td>
+      <td>76.0</td>
+      <td>78.0</td>
+      <td>17.5</td>
+    </tr>
+    <tr>
+      <th>Luxembourg</th>
+      <td>12.0</td>
+      <td>4.3</td>
+      <td>6.0</td>
+      <td>0.1</td>
+      <td>78.0</td>
+      <td>3.47</td>
+      <td>66.0</td>
+      <td>0.4</td>
+      <td>38951.0</td>
+      <td>61765.0</td>
+      <td>21.0</td>
+      <td>4.3</td>
+      <td>81.5</td>
+      <td>6.9</td>
+      <td>1.78</td>
+      <td>56021.0</td>
+      <td>87.0</td>
+      <td>2.0</td>
+      <td>72.0</td>
+      <td>490.0</td>
+      <td>15.12</td>
+      <td>91.0</td>
+      <td>86.0</td>
+      <td>15.1</td>
+    </tr>
+    <tr>
+      <th>Mexico</th>
+      <td>30.0</td>
+      <td>12.8</td>
+      <td>9.0</td>
+      <td>4.2</td>
+      <td>37.0</td>
+      <td>28.83</td>
+      <td>61.0</td>
+      <td>23.4</td>
+      <td>13085.0</td>
+      <td>9056.0</td>
+      <td>21.0</td>
+      <td>4.9</td>
+      <td>74.6</td>
+      <td>6.7</td>
+      <td>0.08</td>
+      <td>16193.0</td>
+      <td>77.0</td>
+      <td>1.0</td>
+      <td>66.0</td>
+      <td>417.0</td>
+      <td>13.89</td>
+      <td>63.0</td>
+      <td>67.0</td>
+      <td>14.4</td>
+    </tr>
+    <tr>
+      <th>Netherlands</th>
+      <td>30.0</td>
+      <td>4.9</td>
+      <td>6.1</td>
+      <td>0.0</td>
+      <td>73.0</td>
+      <td>0.45</td>
+      <td>74.0</td>
+      <td>0.9</td>
+      <td>27888.0</td>
+      <td>77961.0</td>
+      <td>19.0</td>
+      <td>4.5</td>
+      <td>81.2</td>
+      <td>7.3</td>
+      <td>2.40</td>
+      <td>47590.0</td>
+      <td>90.0</td>
+      <td>2.0</td>
+      <td>76.0</td>
+      <td>519.0</td>
+      <td>15.44</td>
+      <td>75.0</td>
+      <td>92.0</td>
+      <td>18.7</td>
+    </tr>
+    <tr>
+      <th>New Zealand</th>
+      <td>11.0</td>
+      <td>2.2</td>
+      <td>10.3</td>
+      <td>0.2</td>
+      <td>74.0</td>
+      <td>13.87</td>
+      <td>73.0</td>
+      <td>1.2</td>
+      <td>23815.0</td>
+      <td>28290.0</td>
+      <td>23.0</td>
+      <td>5.1</td>
+      <td>81.5</td>
+      <td>7.3</td>
+      <td>0.75</td>
+      <td>35609.0</td>
+      <td>94.0</td>
+      <td>2.4</td>
+      <td>90.0</td>
+      <td>509.0</td>
+      <td>14.87</td>
+      <td>77.0</td>
+      <td>89.0</td>
+      <td>18.1</td>
+    </tr>
+    <tr>
+      <th>Norway</th>
+      <td>16.0</td>
+      <td>3.3</td>
+      <td>8.1</td>
+      <td>0.3</td>
+      <td>82.0</td>
+      <td>2.82</td>
+      <td>75.0</td>
+      <td>0.6</td>
+      <td>33492.0</td>
+      <td>8797.0</td>
+      <td>17.0</td>
+      <td>3.1</td>
+      <td>81.5</td>
+      <td>7.4</td>
+      <td>0.32</td>
+      <td>50282.0</td>
+      <td>94.0</td>
+      <td>2.0</td>
+      <td>76.0</td>
+      <td>496.0</td>
+      <td>15.56</td>
+      <td>78.0</td>
+      <td>94.0</td>
+      <td>17.9</td>
+    </tr>
+    <tr>
+      <th>OECD - Total</th>
+      <td>20.0</td>
+      <td>3.9</td>
+      <td>7.3</td>
+      <td>2.4</td>
+      <td>75.0</td>
+      <td>12.51</td>
+      <td>65.0</td>
+      <td>4.0</td>
+      <td>25908.0</td>
+      <td>67139.0</td>
+      <td>18.0</td>
+      <td>5.4</td>
+      <td>79.6</td>
+      <td>6.6</td>
+      <td>2.79</td>
+      <td>36118.0</td>
+      <td>88.0</td>
+      <td>1.8</td>
+      <td>68.0</td>
+      <td>497.0</td>
+      <td>14.97</td>
+      <td>68.0</td>
+      <td>81.0</td>
+      <td>17.7</td>
+    </tr>
+    <tr>
+      <th>Poland</th>
+      <td>33.0</td>
+      <td>1.4</td>
+      <td>10.8</td>
+      <td>3.2</td>
+      <td>90.0</td>
+      <td>7.41</td>
+      <td>60.0</td>
+      <td>0.9</td>
+      <td>17852.0</td>
+      <td>10919.0</td>
+      <td>21.0</td>
+      <td>7.3</td>
+      <td>76.9</td>
+      <td>5.8</td>
+      <td>3.77</td>
+      <td>22655.0</td>
+      <td>91.0</td>
+      <td>1.1</td>
+      <td>58.0</td>
+      <td>521.0</td>
+      <td>14.20</td>
+      <td>55.0</td>
+      <td>79.0</td>
+      <td>18.4</td>
+    </tr>
+    <tr>
+      <th>Portugal</th>
+      <td>18.0</td>
+      <td>5.7</td>
+      <td>6.5</td>
+      <td>0.9</td>
+      <td>38.0</td>
+      <td>9.62</td>
+      <td>61.0</td>
+      <td>1.1</td>
+      <td>20086.0</td>
+      <td>31245.0</td>
+      <td>19.0</td>
+      <td>8.6</td>
+      <td>80.5</td>
+      <td>5.1</td>
+      <td>9.11</td>
+      <td>23688.0</td>
+      <td>86.0</td>
+      <td>1.6</td>
+      <td>46.0</td>
+      <td>488.0</td>
+      <td>14.95</td>
+      <td>58.0</td>
+      <td>86.0</td>
+      <td>17.6</td>
+    </tr>
+    <tr>
+      <th>Russia</th>
+      <td>15.0</td>
+      <td>3.8</td>
+      <td>2.5</td>
+      <td>15.1</td>
+      <td>94.0</td>
+      <td>0.16</td>
+      <td>69.0</td>
+      <td>12.8</td>
+      <td>19292.0</td>
+      <td>3412.0</td>
+      <td>11.0</td>
+      <td>4.0</td>
+      <td>70.2</td>
+      <td>6.0</td>
+      <td>1.70</td>
+      <td>20885.0</td>
+      <td>90.0</td>
+      <td>0.9</td>
+      <td>37.0</td>
+      <td>481.0</td>
+      <td>14.97</td>
+      <td>65.0</td>
+      <td>56.0</td>
+      <td>16.0</td>
+    </tr>
+    <tr>
+      <th>Slovak Republic</th>
+      <td>13.0</td>
+      <td>3.0</td>
+      <td>6.6</td>
+      <td>0.6</td>
+      <td>92.0</td>
+      <td>7.02</td>
+      <td>60.0</td>
+      <td>1.2</td>
+      <td>17503.0</td>
+      <td>8663.0</td>
+      <td>26.0</td>
+      <td>5.5</td>
+      <td>76.2</td>
+      <td>6.1</td>
+      <td>9.46</td>
+      <td>20307.0</td>
+      <td>90.0</td>
+      <td>1.1</td>
+      <td>66.0</td>
+      <td>472.0</td>
+      <td>14.99</td>
+      <td>59.0</td>
+      <td>81.0</td>
+      <td>16.3</td>
+    </tr>
+    <tr>
+      <th>Slovenia</th>
+      <td>26.0</td>
+      <td>3.9</td>
+      <td>10.3</td>
+      <td>0.5</td>
+      <td>85.0</td>
+      <td>5.63</td>
+      <td>63.0</td>
+      <td>0.4</td>
+      <td>19326.0</td>
+      <td>18465.0</td>
+      <td>20.0</td>
+      <td>5.5</td>
+      <td>80.2</td>
+      <td>5.7</td>
+      <td>5.15</td>
+      <td>32037.0</td>
+      <td>90.0</td>
+      <td>1.5</td>
+      <td>65.0</td>
+      <td>499.0</td>
+      <td>14.62</td>
+      <td>52.0</td>
+      <td>88.0</td>
+      <td>18.4</td>
+    </tr>
+    <tr>
+      <th>Spain</th>
+      <td>24.0</td>
+      <td>4.2</td>
+      <td>7.3</td>
+      <td>0.1</td>
+      <td>55.0</td>
+      <td>5.89</td>
+      <td>56.0</td>
+      <td>0.6</td>
+      <td>22477.0</td>
+      <td>24774.0</td>
+      <td>22.0</td>
+      <td>17.8</td>
+      <td>82.5</td>
+      <td>6.5</td>
+      <td>12.96</td>
+      <td>34824.0</td>
+      <td>95.0</td>
+      <td>1.9</td>
+      <td>72.0</td>
+      <td>490.0</td>
+      <td>16.06</td>
+      <td>69.0</td>
+      <td>71.0</td>
+      <td>17.6</td>
+    </tr>
+    <tr>
+      <th>Sweden</th>
+      <td>10.0</td>
+      <td>5.1</td>
+      <td>10.9</td>
+      <td>0.0</td>
+      <td>88.0</td>
+      <td>1.13</td>
+      <td>74.0</td>
+      <td>0.7</td>
+      <td>29185.0</td>
+      <td>60328.0</td>
+      <td>20.0</td>
+      <td>6.5</td>
+      <td>81.8</td>
+      <td>7.2</td>
+      <td>1.37</td>
+      <td>40818.0</td>
+      <td>92.0</td>
+      <td>1.7</td>
+      <td>81.0</td>
+      <td>482.0</td>
+      <td>15.11</td>
+      <td>86.0</td>
+      <td>95.0</td>
+      <td>19.3</td>
+    </tr>
+    <tr>
+      <th>Switzerland</th>
+      <td>20.0</td>
+      <td>4.2</td>
+      <td>8.4</td>
+      <td>0.0</td>
+      <td>86.0</td>
+      <td>6.72</td>
+      <td>80.0</td>
+      <td>0.5</td>
+      <td>33491.0</td>
+      <td>108823.0</td>
+      <td>22.0</td>
+      <td>3.0</td>
+      <td>82.8</td>
+      <td>7.5</td>
+      <td>1.46</td>
+      <td>54236.0</td>
+      <td>96.0</td>
+      <td>1.8</td>
+      <td>81.0</td>
+      <td>518.0</td>
+      <td>14.98</td>
+      <td>49.0</td>
+      <td>96.0</td>
+      <td>17.3</td>
+    </tr>
+    <tr>
+      <th>Turkey</th>
+      <td>35.0</td>
+      <td>5.0</td>
+      <td>5.5</td>
+      <td>12.7</td>
+      <td>34.0</td>
+      <td>40.86</td>
+      <td>50.0</td>
+      <td>1.2</td>
+      <td>14095.0</td>
+      <td>3251.0</td>
+      <td>21.0</td>
+      <td>8.1</td>
+      <td>74.6</td>
+      <td>5.6</td>
+      <td>2.37</td>
+      <td>16919.0</td>
+      <td>86.0</td>
+      <td>1.1</td>
+      <td>68.0</td>
+      <td>462.0</td>
+      <td>13.42</td>
+      <td>88.0</td>
+      <td>62.0</td>
+      <td>16.4</td>
+    </tr>
+    <tr>
+      <th>United Kingdom</th>
+      <td>13.0</td>
+      <td>1.9</td>
+      <td>11.5</td>
+      <td>0.2</td>
+      <td>78.0</td>
+      <td>12.70</td>
+      <td>71.0</td>
+      <td>0.3</td>
+      <td>27029.0</td>
+      <td>60778.0</td>
+      <td>23.0</td>
+      <td>5.2</td>
+      <td>81.0</td>
+      <td>6.8</td>
+      <td>2.77</td>
+      <td>41192.0</td>
+      <td>91.0</td>
+      <td>1.9</td>
+      <td>74.0</td>
+      <td>502.0</td>
+      <td>14.83</td>
+      <td>66.0</td>
+      <td>88.0</td>
+      <td>16.4</td>
+    </tr>
+    <tr>
+      <th>United States</th>
+      <td>18.0</td>
+      <td>1.5</td>
+      <td>8.3</td>
+      <td>0.1</td>
+      <td>89.0</td>
+      <td>11.30</td>
+      <td>67.0</td>
+      <td>5.2</td>
+      <td>41355.0</td>
+      <td>145769.0</td>
+      <td>18.0</td>
+      <td>5.9</td>
+      <td>78.7</td>
+      <td>7.2</td>
+      <td>1.91</td>
+      <td>56340.0</td>
+      <td>90.0</td>
+      <td>2.4</td>
+      <td>88.0</td>
+      <td>492.0</td>
+      <td>14.27</td>
+      <td>68.0</td>
+      <td>85.0</td>
+      <td>17.2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>참고로 대한민국의 측정지표별 수치는 다음과 같다(위 이미지 중간의 파란띠로 구분된 영역 참조).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oecd_bli</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Korea&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Indicator
+Air pollution                                   30.00
+Assault rate                                     2.10
+Consultation on rule-making                     10.40
+Dwellings without basic facilities               4.20
+Educational attainment                          82.00
+Employees working very long hours               18.72
+Employment rate                                 64.00
+Homicide rate                                    1.10
+Household net adjusted disposable income     19510.00
+Household net financial wealth               29091.00
+Housing expenditure                             16.00
+Job security                                     3.20
+Life expectancy                                 81.30
+Life satisfaction                                5.80
+Long-term unemployment rate                      0.01
+Personal earnings                            36354.00
+Quality of support network                      72.00
+Rooms per person                                 1.40
+Self-reported health                            35.00
+Student skills                                 542.00
+Time devoted to leisure and personal care       14.63
+Voter turnout                                   76.00
+Water quality                                   78.00
+Years in education                              17.50
+Name: Korea, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<p>알파벳 순으로 첫 5개 국가의 삶의 만족도는 <code class="docutils literal notranslate"><span class="pre">&quot;Life</span> <span class="pre">satisfaction&quot;</span></code> 열(column)에서 확인할 수 있다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oecd_bli</span><span class="p">[</span><span class="s2">&quot;Life satisfaction&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Country
+Australia    7.3
+Austria      6.9
+Belgium      6.9
+Brazil       7.0
+Canada       7.3
+Name: Life satisfaction, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id5">
+<h2><span class="section-number">31.4. </span>데이터 합병<a class="headerlink" href="casestudy_oecd_bli.html#id5" title="Link to this heading">#</a></h2>
+<p>앞서 살펴본 대로 1인당 GDP 데이터는 OECD 회원국 이외의 국가 데이터도 포함되어 있다.
+OECD 회원국으로 제한해서 1인당 GDP와 삶의 만족도 사이의 관계를 파악하기 위해
+앞서 구한 두 개의 데이터프레임을 하나로 합병한다.</p>
+<ul class="simple">
+<li><p>판다스의 <code class="docutils literal notranslate"><span class="pre">merge()</span></code> 함수를 이용한다.</p></li>
+<li><p>OECD 회원국들만 대상으로 하기 위해
+<code class="docutils literal notranslate"><span class="pre">left_index=True</span></code>와 <code class="docutils literal notranslate"><span class="pre">right_index=True</span></code>로 설정한다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gdp_per_capita_2015</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Subject Descriptor</th>
+      <th>Units</th>
+      <th>Scale</th>
+      <th>Country/Series-specific Notes</th>
+      <th>GDP per capita</th>
+      <th>Estimates Start After</th>
+    </tr>
+    <tr>
+      <th>Country</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Afghanistan</th>
+      <td>Gross domestic product per capita, current prices</td>
+      <td>U.S. dollars</td>
+      <td>Units</td>
+      <td>See notes for:  Gross domestic product, curren...</td>
+      <td>599.994</td>
+      <td>2013.0</td>
+    </tr>
+    <tr>
+      <th>Albania</th>
+      <td>Gross domestic product per capita, current prices</td>
+      <td>U.S. dollars</td>
+      <td>Units</td>
+      <td>See notes for:  Gross domestic product, curren...</td>
+      <td>3995.383</td>
+      <td>2010.0</td>
+    </tr>
+    <tr>
+      <th>Algeria</th>
+      <td>Gross domestic product per capita, current prices</td>
+      <td>U.S. dollars</td>
+      <td>Units</td>
+      <td>See notes for:  Gross domestic product, curren...</td>
+      <td>4318.135</td>
+      <td>2014.0</td>
+    </tr>
+    <tr>
+      <th>Angola</th>
+      <td>Gross domestic product per capita, current prices</td>
+      <td>U.S. dollars</td>
+      <td>Units</td>
+      <td>See notes for:  Gross domestic product, curren...</td>
+      <td>4100.315</td>
+      <td>2014.0</td>
+    </tr>
+    <tr>
+      <th>Antigua and Barbuda</th>
+      <td>Gross domestic product per capita, current prices</td>
+      <td>U.S. dollars</td>
+      <td>Units</td>
+      <td>See notes for:  Gross domestic product, curren...</td>
+      <td>14414.302</td>
+      <td>2011.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oecd_bli</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Indicator</th>
+      <th>Air pollution</th>
+      <th>Assault rate</th>
+      <th>Consultation on rule-making</th>
+      <th>Dwellings without basic facilities</th>
+      <th>Educational attainment</th>
+      <th>Employees working very long hours</th>
+      <th>Employment rate</th>
+      <th>Homicide rate</th>
+      <th>Household net adjusted disposable income</th>
+      <th>Household net financial wealth</th>
+      <th>Housing expenditure</th>
+      <th>Job security</th>
+      <th>Life expectancy</th>
+      <th>Life satisfaction</th>
+      <th>Long-term unemployment rate</th>
+      <th>Personal earnings</th>
+      <th>Quality of support network</th>
+      <th>Rooms per person</th>
+      <th>Self-reported health</th>
+      <th>Student skills</th>
+      <th>Time devoted to leisure and personal care</th>
+      <th>Voter turnout</th>
+      <th>Water quality</th>
+      <th>Years in education</th>
+    </tr>
+    <tr>
+      <th>Country</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Australia</th>
+      <td>13.0</td>
+      <td>2.1</td>
+      <td>10.5</td>
+      <td>1.1</td>
+      <td>76.0</td>
+      <td>14.02</td>
+      <td>72.0</td>
+      <td>0.8</td>
+      <td>31588.0</td>
+      <td>47657.0</td>
+      <td>20.0</td>
+      <td>4.8</td>
+      <td>82.1</td>
+      <td>7.3</td>
+      <td>1.08</td>
+      <td>50449.0</td>
+      <td>92.0</td>
+      <td>2.3</td>
+      <td>85.0</td>
+      <td>512.0</td>
+      <td>14.41</td>
+      <td>93.0</td>
+      <td>91.0</td>
+      <td>19.4</td>
+    </tr>
+    <tr>
+      <th>Austria</th>
+      <td>27.0</td>
+      <td>3.4</td>
+      <td>7.1</td>
+      <td>1.0</td>
+      <td>83.0</td>
+      <td>7.61</td>
+      <td>72.0</td>
+      <td>0.4</td>
+      <td>31173.0</td>
+      <td>49887.0</td>
+      <td>21.0</td>
+      <td>3.9</td>
+      <td>81.0</td>
+      <td>6.9</td>
+      <td>1.19</td>
+      <td>45199.0</td>
+      <td>89.0</td>
+      <td>1.6</td>
+      <td>69.0</td>
+      <td>500.0</td>
+      <td>14.46</td>
+      <td>75.0</td>
+      <td>94.0</td>
+      <td>17.0</td>
+    </tr>
+    <tr>
+      <th>Belgium</th>
+      <td>21.0</td>
+      <td>6.6</td>
+      <td>4.5</td>
+      <td>2.0</td>
+      <td>72.0</td>
+      <td>4.57</td>
+      <td>62.0</td>
+      <td>1.1</td>
+      <td>28307.0</td>
+      <td>83876.0</td>
+      <td>21.0</td>
+      <td>5.0</td>
+      <td>80.5</td>
+      <td>6.9</td>
+      <td>3.88</td>
+      <td>48082.0</td>
+      <td>94.0</td>
+      <td>2.2</td>
+      <td>74.0</td>
+      <td>509.0</td>
+      <td>15.71</td>
+      <td>89.0</td>
+      <td>87.0</td>
+      <td>18.9</td>
+    </tr>
+    <tr>
+      <th>Brazil</th>
+      <td>18.0</td>
+      <td>7.9</td>
+      <td>4.0</td>
+      <td>6.7</td>
+      <td>45.0</td>
+      <td>10.41</td>
+      <td>67.0</td>
+      <td>25.5</td>
+      <td>11664.0</td>
+      <td>6844.0</td>
+      <td>21.0</td>
+      <td>4.6</td>
+      <td>73.7</td>
+      <td>7.0</td>
+      <td>1.97</td>
+      <td>17177.0</td>
+      <td>90.0</td>
+      <td>1.6</td>
+      <td>69.0</td>
+      <td>402.0</td>
+      <td>14.97</td>
+      <td>79.0</td>
+      <td>72.0</td>
+      <td>16.3</td>
+    </tr>
+    <tr>
+      <th>Canada</th>
+      <td>15.0</td>
+      <td>1.3</td>
+      <td>10.5</td>
+      <td>0.2</td>
+      <td>89.0</td>
+      <td>3.94</td>
+      <td>72.0</td>
+      <td>1.5</td>
+      <td>29365.0</td>
+      <td>67913.0</td>
+      <td>21.0</td>
+      <td>6.4</td>
+      <td>81.5</td>
+      <td>7.3</td>
+      <td>0.90</td>
+      <td>46911.0</td>
+      <td>92.0</td>
+      <td>2.5</td>
+      <td>89.0</td>
+      <td>522.0</td>
+      <td>14.25</td>
+      <td>61.0</td>
+      <td>91.0</td>
+      <td>17.2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oecd_bli</span><span class="p">[</span><span class="s1">&#39;Life satisfaction&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Country
+Australia          7.3
+Austria            6.9
+Belgium            6.9
+Brazil             7.0
+Canada             7.3
+Chile              6.7
+Czech Republic     6.5
+Denmark            7.5
+Estonia            5.6
+Finland            7.4
+France             6.5
+Germany            7.0
+Greece             4.8
+Hungary            4.9
+Iceland            7.5
+Ireland            7.0
+Israel             7.4
+Italy              6.0
+Japan              5.9
+Korea              5.8
+Luxembourg         6.9
+Mexico             6.7
+Netherlands        7.3
+New Zealand        7.3
+Norway             7.4
+OECD - Total       6.6
+Poland             5.8
+Portugal           5.1
+Russia             6.0
+Slovak Republic    6.1
+Slovenia           5.7
+Spain              6.5
+Sweden             7.2
+Switzerland        7.5
+Turkey             5.6
+United Kingdom     6.8
+United States      7.2
+Name: Life satisfaction, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oecd_country_stats</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">gdp_per_capita_2015</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s1">&#39;GDP per capita&#39;</span><span class="p">]],</span>
+                              <span class="n">oecd_bli</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s1">&#39;Life satisfaction&#39;</span><span class="p">]],</span> 
+                              <span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                              <span class="n">right_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oecd_country_stats</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>GDP per capita</th>
+      <th>Life satisfaction</th>
+    </tr>
+    <tr>
+      <th>Country</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Australia</th>
+      <td>50961.865</td>
+      <td>7.3</td>
+    </tr>
+    <tr>
+      <th>Austria</th>
+      <td>43724.031</td>
+      <td>6.9</td>
+    </tr>
+    <tr>
+      <th>Belgium</th>
+      <td>40106.632</td>
+      <td>6.9</td>
+    </tr>
+    <tr>
+      <th>Brazil</th>
+      <td>8669.998</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>Canada</th>
+      <td>43331.961</td>
+      <td>7.3</td>
+    </tr>
+    <tr>
+      <th>Chile</th>
+      <td>13340.905</td>
+      <td>6.7</td>
+    </tr>
+    <tr>
+      <th>Czech Republic</th>
+      <td>17256.918</td>
+      <td>6.5</td>
+    </tr>
+    <tr>
+      <th>Denmark</th>
+      <td>52114.165</td>
+      <td>7.5</td>
+    </tr>
+    <tr>
+      <th>Estonia</th>
+      <td>17288.083</td>
+      <td>5.6</td>
+    </tr>
+    <tr>
+      <th>Finland</th>
+      <td>41973.988</td>
+      <td>7.4</td>
+    </tr>
+    <tr>
+      <th>France</th>
+      <td>37675.006</td>
+      <td>6.5</td>
+    </tr>
+    <tr>
+      <th>Germany</th>
+      <td>40996.511</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>Greece</th>
+      <td>18064.288</td>
+      <td>4.8</td>
+    </tr>
+    <tr>
+      <th>Hungary</th>
+      <td>12239.894</td>
+      <td>4.9</td>
+    </tr>
+    <tr>
+      <th>Iceland</th>
+      <td>50854.583</td>
+      <td>7.5</td>
+    </tr>
+    <tr>
+      <th>Ireland</th>
+      <td>51350.744</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>Israel</th>
+      <td>35343.336</td>
+      <td>7.4</td>
+    </tr>
+    <tr>
+      <th>Italy</th>
+      <td>29866.581</td>
+      <td>6.0</td>
+    </tr>
+    <tr>
+      <th>Japan</th>
+      <td>32485.545</td>
+      <td>5.9</td>
+    </tr>
+    <tr>
+      <th>Korea</th>
+      <td>27195.197</td>
+      <td>5.8</td>
+    </tr>
+    <tr>
+      <th>Luxembourg</th>
+      <td>101994.093</td>
+      <td>6.9</td>
+    </tr>
+    <tr>
+      <th>Mexico</th>
+      <td>9009.280</td>
+      <td>6.7</td>
+    </tr>
+    <tr>
+      <th>Netherlands</th>
+      <td>43603.115</td>
+      <td>7.3</td>
+    </tr>
+    <tr>
+      <th>New Zealand</th>
+      <td>37044.891</td>
+      <td>7.3</td>
+    </tr>
+    <tr>
+      <th>Norway</th>
+      <td>74822.106</td>
+      <td>7.4</td>
+    </tr>
+    <tr>
+      <th>Poland</th>
+      <td>12495.334</td>
+      <td>5.8</td>
+    </tr>
+    <tr>
+      <th>Portugal</th>
+      <td>19121.592</td>
+      <td>5.1</td>
+    </tr>
+    <tr>
+      <th>Russia</th>
+      <td>9054.914</td>
+      <td>6.0</td>
+    </tr>
+    <tr>
+      <th>Slovak Republic</th>
+      <td>15991.736</td>
+      <td>6.1</td>
+    </tr>
+    <tr>
+      <th>Slovenia</th>
+      <td>20732.482</td>
+      <td>5.7</td>
+    </tr>
+    <tr>
+      <th>Spain</th>
+      <td>25864.721</td>
+      <td>6.5</td>
+    </tr>
+    <tr>
+      <th>Sweden</th>
+      <td>49866.266</td>
+      <td>7.2</td>
+    </tr>
+    <tr>
+      <th>Switzerland</th>
+      <td>80675.308</td>
+      <td>7.5</td>
+    </tr>
+    <tr>
+      <th>Turkey</th>
+      <td>9437.372</td>
+      <td>5.6</td>
+    </tr>
+    <tr>
+      <th>United Kingdom</th>
+      <td>43770.688</td>
+      <td>6.8</td>
+    </tr>
+    <tr>
+      <th>United States</th>
+      <td>55805.204</td>
+      <td>7.2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>행의 수가 36으로 정확하게 OECD 회원국가만 포함된다.
+즉, <code class="docutils literal notranslate"><span class="pre">OECD</span> <span class="pre">-</span> <span class="pre">Total</span></code> 데이터도 함께 사라졌다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oecd_country_stats</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(36, 2)
+</pre></div>
+</div>
+</div>
+</div>
+<p>열 인덱스의 라벨을 한글로 바꾼다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oecd_country_stats</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;GDP per capita&#39;</span><span class="p">:</span> <span class="s1">&#39;1인당 GDP&#39;</span><span class="p">,</span> <span class="s1">&#39;Life satisfaction&#39;</span><span class="p">:</span><span class="s1">&#39;삶의 만족도&#39;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oecd_country_stats</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>1인당 GDP</th>
+      <th>삶의 만족도</th>
+    </tr>
+    <tr>
+      <th>Country</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Australia</th>
+      <td>50961.865</td>
+      <td>7.3</td>
+    </tr>
+    <tr>
+      <th>Austria</th>
+      <td>43724.031</td>
+      <td>6.9</td>
+    </tr>
+    <tr>
+      <th>Belgium</th>
+      <td>40106.632</td>
+      <td>6.9</td>
+    </tr>
+    <tr>
+      <th>Brazil</th>
+      <td>8669.998</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>Canada</th>
+      <td>43331.961</td>
+      <td>7.3</td>
+    </tr>
+    <tr>
+      <th>Chile</th>
+      <td>13340.905</td>
+      <td>6.7</td>
+    </tr>
+    <tr>
+      <th>Czech Republic</th>
+      <td>17256.918</td>
+      <td>6.5</td>
+    </tr>
+    <tr>
+      <th>Denmark</th>
+      <td>52114.165</td>
+      <td>7.5</td>
+    </tr>
+    <tr>
+      <th>Estonia</th>
+      <td>17288.083</td>
+      <td>5.6</td>
+    </tr>
+    <tr>
+      <th>Finland</th>
+      <td>41973.988</td>
+      <td>7.4</td>
+    </tr>
+    <tr>
+      <th>France</th>
+      <td>37675.006</td>
+      <td>6.5</td>
+    </tr>
+    <tr>
+      <th>Germany</th>
+      <td>40996.511</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>Greece</th>
+      <td>18064.288</td>
+      <td>4.8</td>
+    </tr>
+    <tr>
+      <th>Hungary</th>
+      <td>12239.894</td>
+      <td>4.9</td>
+    </tr>
+    <tr>
+      <th>Iceland</th>
+      <td>50854.583</td>
+      <td>7.5</td>
+    </tr>
+    <tr>
+      <th>Ireland</th>
+      <td>51350.744</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>Israel</th>
+      <td>35343.336</td>
+      <td>7.4</td>
+    </tr>
+    <tr>
+      <th>Italy</th>
+      <td>29866.581</td>
+      <td>6.0</td>
+    </tr>
+    <tr>
+      <th>Japan</th>
+      <td>32485.545</td>
+      <td>5.9</td>
+    </tr>
+    <tr>
+      <th>Korea</th>
+      <td>27195.197</td>
+      <td>5.8</td>
+    </tr>
+    <tr>
+      <th>Luxembourg</th>
+      <td>101994.093</td>
+      <td>6.9</td>
+    </tr>
+    <tr>
+      <th>Mexico</th>
+      <td>9009.280</td>
+      <td>6.7</td>
+    </tr>
+    <tr>
+      <th>Netherlands</th>
+      <td>43603.115</td>
+      <td>7.3</td>
+    </tr>
+    <tr>
+      <th>New Zealand</th>
+      <td>37044.891</td>
+      <td>7.3</td>
+    </tr>
+    <tr>
+      <th>Norway</th>
+      <td>74822.106</td>
+      <td>7.4</td>
+    </tr>
+    <tr>
+      <th>Poland</th>
+      <td>12495.334</td>
+      <td>5.8</td>
+    </tr>
+    <tr>
+      <th>Portugal</th>
+      <td>19121.592</td>
+      <td>5.1</td>
+    </tr>
+    <tr>
+      <th>Russia</th>
+      <td>9054.914</td>
+      <td>6.0</td>
+    </tr>
+    <tr>
+      <th>Slovak Republic</th>
+      <td>15991.736</td>
+      <td>6.1</td>
+    </tr>
+    <tr>
+      <th>Slovenia</th>
+      <td>20732.482</td>
+      <td>5.7</td>
+    </tr>
+    <tr>
+      <th>Spain</th>
+      <td>25864.721</td>
+      <td>6.5</td>
+    </tr>
+    <tr>
+      <th>Sweden</th>
+      <td>49866.266</td>
+      <td>7.2</td>
+    </tr>
+    <tr>
+      <th>Switzerland</th>
+      <td>80675.308</td>
+      <td>7.5</td>
+    </tr>
+    <tr>
+      <th>Turkey</th>
+      <td>9437.372</td>
+      <td>5.6</td>
+    </tr>
+    <tr>
+      <th>United Kingdom</th>
+      <td>43770.688</td>
+      <td>6.8</td>
+    </tr>
+    <tr>
+      <th>United States</th>
+      <td>55805.204</td>
+      <td>7.2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="id6">
+<h2><span class="section-number">31.5. </span>그래프 그리기<a class="headerlink" href="casestudy_oecd_bli.html#id6" title="Link to this heading">#</a></h2>
+<p>36개 국가의 1인단 GDP와 삶의 만족도 사이의 관계를 확인하기 위해 산점도를 그린다.
+추가로 일부 국가를 빨강색로 표시하고 국가 이름도 함께 넣는다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oecd_country_stats</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;1인당 GDP&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;삶의 만족도&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">120000</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+
+<span class="c1"># 언급된 5개 국가명과 좌표</span>
+<span class="n">position_text</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Hungary&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">7000</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="s2">&quot;Korea&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">24000</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">),</span>
+    <span class="s2">&quot;Australia&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">45000</span><span class="p">,</span> <span class="mf">2.7</span><span class="p">),</span>
+    <span class="s2">&quot;United States&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">54500</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">),</span>
+    <span class="s2">&quot;Switzerland&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">75000</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">),</span>
+    <span class="s2">&quot;Luxembourg&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">95000</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">),</span>    
+<span class="p">}</span>
+
+<span class="c1"># 5개 국가는 좌표를 이용하여 빨강색 점으로 표기</span>
+<span class="k">for</span> <span class="n">country</span><span class="p">,</span> <span class="n">pos_text</span> <span class="ow">in</span> <span class="n">position_text</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">pos_data_x</span><span class="p">,</span> <span class="n">pos_data_y</span> <span class="o">=</span> <span class="n">oecd_country_stats</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">country</span><span class="p">]</span>            <span class="c1"># 5개 국가의 지표</span>
+    
+    <span class="c1"># 5개 국가명 표기</span>
+    <span class="n">country</span> <span class="o">=</span> <span class="s2">&quot;U.S.&quot;</span> <span class="k">if</span> <span class="n">country</span> <span class="o">==</span> <span class="s2">&quot;United States&quot;</span> <span class="k">else</span> <span class="n">country</span>  <span class="c1"># 미국은 U.S. 로 표기</span>
+    
+    <span class="c1"># 화살표 그리기</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">country</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">pos_data_x</span><span class="p">,</span> <span class="n">pos_data_y</span><span class="p">),</span> 
+                 <span class="n">xytext</span><span class="o">=</span><span class="n">pos_text</span><span class="p">,</span>
+                 <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">headwidth</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> <span class="p">)</span>
+    
+    <span class="c1"># 5개 국가 산점도 그리기: 빨강색 점</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pos_data_x</span><span class="p">,</span> <span class="n">pos_data_y</span><span class="p">,</span> <span class="s2">&quot;ro&quot;</span><span class="p">)</span>
+
+<span class="c1"># x 축 제목 새롭게 지정</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;GDP per capita (USD)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Life satisfaction&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/2c6daeaf2187dd5870b9a4753962495b5d06efb0dd2a5d80a0d9d774b8cb3310.png" src="_images/2c6daeaf2187dd5870b9a4753962495b5d06efb0dd2a5d80a0d9d774b8cb3310.png" />
+</div>
+</div>
+<p>1인당 GDP와 삶의 만족도 사이의 선형관계를 보다 확실하게 보여주기 위해
+적절한 직선도 하나 그린다.
+직선의 기울기와 절편은 머신러닝 선형회귀 모델을 이용하여 쉽게 확인할 수 있지만
+여기서는 결과만 이용한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oecd_country_stats</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;1인당 GDP&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;삶의 만족도&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">110000</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+
+<span class="c1"># 언급된 5개 국가명과 좌표</span>
+<span class="n">position_text</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Hungary&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">7000</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="s2">&quot;Korea&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">24000</span><span class="p">,</span> <span class="mf">1.7</span><span class="p">),</span>
+    <span class="s2">&quot;Australia&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">45000</span><span class="p">,</span> <span class="mf">2.7</span><span class="p">),</span>
+    <span class="s2">&quot;United States&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">54500</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">),</span>
+    <span class="s2">&quot;Switzerland&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">75000</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">),</span>
+    <span class="s2">&quot;Luxembourg&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">95000</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">),</span>    
+<span class="p">}</span>
+
+<span class="c1"># 5개 국가는 좌표를 이용하여 빨강색 점으로 표기</span>
+<span class="k">for</span> <span class="n">country</span><span class="p">,</span> <span class="n">pos_text</span> <span class="ow">in</span> <span class="n">position_text</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">pos_data_x</span><span class="p">,</span> <span class="n">pos_data_y</span> <span class="o">=</span> <span class="n">oecd_country_stats</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">country</span><span class="p">]</span>            <span class="c1"># 5개 국가의 지표</span>
+    
+    <span class="c1"># 5개 국가명 표기</span>
+    <span class="n">country</span> <span class="o">=</span> <span class="s2">&quot;U.S.&quot;</span> <span class="k">if</span> <span class="n">country</span> <span class="o">==</span> <span class="s2">&quot;United States&quot;</span> <span class="k">else</span> <span class="n">country</span>  <span class="c1"># 미국은 U.S. 로 표기</span>
+    
+    <span class="c1"># 화살표 그리기</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">country</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">pos_data_x</span><span class="p">,</span> <span class="n">pos_data_y</span><span class="p">),</span> 
+                 <span class="n">xytext</span><span class="o">=</span><span class="n">pos_text</span><span class="p">,</span>
+                 <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">headwidth</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> <span class="p">)</span>
+    
+    <span class="c1"># 5개 국가 산점도 그리기: 빨강색 점</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pos_data_x</span><span class="p">,</span> <span class="n">pos_data_y</span><span class="p">,</span> <span class="s2">&quot;ro&quot;</span><span class="p">)</span>
+
+<span class="c1"># 7개 국가 포함 예측 선형 모델 그래프(검정 점선)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mf">2.3177337047396075e-05</span>  <span class="c1"># 기울기</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mf">5.763029861307918</span>       <span class="c1"># 절편</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">110000</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">b</span> <span class="o">+</span> <span class="n">a</span> <span class="o">*</span> <span class="n">X</span><span class="p">,</span> <span class="s2">&quot;k:&quot;</span><span class="p">)</span>
+
+<span class="c1"># x 축 제목 새롭게 지정</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;GDP per capita (USD)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Life satisfaction&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/de4325dfa9cdda62b3aae94918ea3ad64ddd8e95995c2cf5956a14815fffdb00.png" src="_images/de4325dfa9cdda62b3aae94918ea3ad64ddd8e95995c2cf5956a14815fffdb00.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="casestudy_california_housing.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">30. </span>캘리포니아 주택 가격</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="casestudy_oecd_bli.html#id1">31.1. 주요 내용</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="casestudy_oecd_bli.html#id2">31.2. 데이터 구하기</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="casestudy_oecd_bli.html#id3">31.3. 데이터 적재, 정제, 전처리</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="casestudy_oecd_bli.html#gdp">31.3.1. 1인당 GDP 데이터 적재, 정제, 전처리</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="casestudy_oecd_bli.html#id4">31.3.2. 삶의 만족도 데이터 적재, 정제, 전처리</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="casestudy_oecd_bli.html#id5">31.4. 데이터 합병</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="casestudy_oecd_bli.html#id6">31.5. 그래프 그리기</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 코딩알지
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js@digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js@digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

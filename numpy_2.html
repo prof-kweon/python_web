@@ -1,0 +1,2295 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>13. 어레이 인덱싱 &#8212; 파이썬 데이터 분석</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css@digest=dfe6caa3a7d634c4db9b.css" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css@digest=dfe6caa3a7d634c4db9b.css" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css@digest=dfe6caa3a7d634c4db9b.css" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css@digest=dfe6caa3a7d634c4db9b.css" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css@v=fa44fd50.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css@v=a3416100.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css@v=13237357.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css@v=76b2166b.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css@v=be8a1c11.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css@v=4fa983c6.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css@v=ca93fcec.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css@v=95c83b7e.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js@digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js@digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js@digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js@v=9eb32ce0"></script>
+    <script src="_static/doctools.js@v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js@v=dc90522c"></script>
+    <script src="_static/clipboard.min.js@v=a7894cd8"></script>
+    <script src="_static/copybutton.js@v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js@v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js@v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js@v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js@v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'numpy_2';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="14. 어레이 중심 프로그래밍" href="numpy_3.html" />
+    <link rel="prev" title="12. 넘파이 어레이" href="numpy_1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="numpy_2.html#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">파이썬 데이터 분석</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">파이썬 기초</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="python_basic_1.html">1. 프로그램 개발 환경</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_2.html">2. 기초 문법</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_3.html">3. 기초 자료형</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_4.html">4. 제어문</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_5.html">5. 모음 자료형</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_6.html">6. 함수</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_7.html">7. 파일</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_8.html">8. 모듈</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_9.html">9. 객체 지향 프로그래밍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="from_scratch_1.html">10. 선형대수 기초</a></li>
+<li class="toctree-l1"><a class="reference internal" href="from_scratch_2.html">11. 통계 기초</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">넘파이</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="numpy_1.html">12. 넘파이 어레이</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="numpy_2.html#">13. 어레이 인덱싱</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numpy_3.html">14. 어레이 중심 프로그래밍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numpy_4.html">15. 어레이 변형</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numpy_5.html">16. 실전 예제: 붓꽃 데이터 분석</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">판다스</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="pandas_1.html">17. 판다스 데이터프레임</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pandas_2.html">18. 데이터프레임 인덱싱</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pandas_3.html">19. 데이터프레임 중심 프로그래밍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pandas_4.html">20. 판다스 활용: 기초 통계</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pandas_5.html">21. 데이터 결합/합병</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pandas_6.html">22. 다중 인덱스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pandas_7.html">23. 데이터 그룹화</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">데이터 시각화</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="visualization_1.html">24. matplotlib.pyplot 1부</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization_2.html">25. matplotlib.pyplot 2부</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization_3.html">26. 판다스 시각화 도구</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization_4.html">27. Seaborn 시각화 라이브러리</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">시계열 데이터</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="pandas_timeseries.html">28. 시계열 데이터</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">실전 데이터 분석</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="casestudy_titanic.html">29. 타이타닉 데이터 분석</a></li>
+<li class="toctree-l1"><a class="reference internal" href="casestudy_california_housing.html">30. 캘리포니아 주택 가격</a></li>
+<li class="toctree-l1"><a class="reference internal" href="casestudy_oecd_bli.html">31. OECD 국가의 삶의 만족도</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/codingalzi/datapy/blob/master/jupyter-book/numpy_2.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/codingalzi/datapy" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/codingalzi/datapy/issues/new?title=Issue%20on%20page%20%2Fnumpy_2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/numpy_2.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>어레이 인덱싱</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="numpy_2.html#id2">13.1. 어레이의 축과 인덱스</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="numpy_2.html#id3">13.2. 인덱싱과 슬라이싱</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="numpy_2.html#id4">13.2.1. 1차원 어레이 인덱싱, 슬라이싱</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="numpy_2.html#id5">13.2.2. 2차원 어레이 인덱싱, 슬라이싱</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="numpy_2.html#id6">13.2.3. 3차원 어레이 인덱싱, 슬라이싱</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="numpy_2.html#id7">13.3. 부울 인덱싱</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="numpy_2.html#id8">13.3.1. 1차원 부울 어레이 활용</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="numpy_2.html#id9">13.3.2. 마스크 활용</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="numpy_2.html#id10">13.3.3. 부울 인덱싱과 뷰</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="numpy_2.html#id11">13.4. 팬시 인덱싱</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="numpy_2.html#id12">13.4.1. 1차원 어레이 팬시 인덱싱</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="numpy_2.html#id13">13.4.2. 2차원 어레이 팬시 인덱싱</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="numpy_2.html#id14">13.4.3. 축과 팬시 인덱싱</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="numpy_2.html#id15">13.5. 연습문제</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="sec-numpy-2">
+<span id="id1"></span><h1><span class="section-number">13. </span>어레이 인덱싱<a class="headerlink" href="numpy_2.html#sec-numpy-2" title="Link to this heading">#</a></h1>
+<p>넘파이 어레이를 활용하는 핵심 기능인 인덱싱의 다양한 기능을 소개한다.</p>
+<p><strong>주요 내용</strong></p>
+<ul class="simple">
+<li><p>어레이의 축</p></li>
+<li><p>인덱싱과 슬라이싱</p></li>
+<li><p>부울 인덱싱</p></li>
+<li><p>팬시 인덱싱</p></li>
+</ul>
+<p><strong>기본 설정</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">numpy</span></code> 모듈과 시각화 도구 모듈인 <code class="docutils literal notranslate"><span class="pre">matplotlib.pyplot</span></code>에 대한 기본 설정을 지정한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 넘파이</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># 램덤 시드</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">12345</span><span class="p">)</span>
+
+<span class="c1"># 어레이에 포함된 부동소수점들의 표현 정확도 지정</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 파이플롯</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># 도표 크기 지정</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;figure&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id2">
+<h2><span class="section-number">13.1. </span>어레이의 축과 인덱스<a class="headerlink" href="numpy_2.html#id2" title="Link to this heading">#</a></h2>
+<p><strong>축</strong></p>
+<p>n-차원 어레이는 n 개의 축<font axis='2'>axis</font>을 갖는다.
+아래 그림은 1차원, 2차원, 3차원 어레이의 축을 설명한다.</p>
+<div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/datapy/master/jupyter-book/images/numpy-array_axis.jpg" style="width:70%;"></div>
+<p><div style="text-align: center">&lt;그림 출처: <a href="https://www.reallifeedublogging.com/2020/07/numpy-arrays-and-data-analysis.html">NumPy Arrays and Data Analysis</a>&gt;</div></p><p><strong>인덱스</strong></p>
+<p>인덱스는 축<font size='2'>axis</font> 별로 독립적으로 적용한다.
+예를 들어 아래 그림은 2차원 어레이가 갖는 두 개의 축에 대해 사용되는 인덱스의
+순서를 보여준다.</p>
+<div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/datapy/master/jupyter-book/images/numpy-array_index.png" style="width:30%;"></div>
+<p><div style="text-align: center">&lt;그림 출처: <a href="https://wesmckinney.com/book/numpy-basics.html">Python for Data Analysis</a>&gt;</div></p></section>
+<section id="id3">
+<h2><span class="section-number">13.2. </span>인덱싱과 슬라이싱<a class="headerlink" href="numpy_2.html#id3" title="Link to this heading">#</a></h2>
+<p>리스트의 인덱싱과 슬라이싱 개념과 유사하지만 보다 다양한 기능을 제공한다.
+데이터 분석에서 인덱싱과 슬라이싱의 역할이 매우 크다.</p>
+<section id="id4">
+<h3><span class="section-number">13.2.1. </span>1차원 어레이 인덱싱, 슬라이싱<a class="headerlink" href="numpy_2.html#id4" title="Link to this heading">#</a></h3>
+<p>1차원 어레이이 대해서는 리스트의 경우와 거의 동일하다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">arr</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>인덱싱: 리스트의 경우와 동일</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>슬라이싱: 구간 확인 기능은 리스트의 경우와 동일</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">8</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([5, 6, 7])
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>슬라이싱 활용: 구간을 특정 값으로 대체하는 기능</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="n">arr</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 0,  1,  2,  3,  4, 12, 12, 12,  8,  9])
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>참고</strong></p>
+<p>위 기능은 리스트에서는 제공되지 않는다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+<span class="n">arr_list</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="mi">12</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">arr_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">arr_list</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="mi">12</span>
+
+<span class="ne">TypeError</span>: can only assign an iterable
+</pre></div>
+</div>
+</div>
+</div>
+<p>대신에 아래와 같이 슬라이싱 구간의 길이와 동일한 길이의 리스트를 대체하는 값으로 지정해야 한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr_list</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr_list</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1, 2, 3, 4, 12, 12, 12, 8, 9]
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>뷰<font size='2'>view</font> 이해</strong></p>
+<p>넘파이 어레이에 대해 슬라이싱을 실행하면 지정된 구간에 해당하는 어레이를 새로 생성하는 게 아니라
+지정된 구간의 정보를 이용만 한다.
+이렇게 작동하는 기능이 <strong>뷰</strong>이다.
+즉, 어레이를 새로 생성하지 않고 기존 어레이를 적절하게 활용한다.
+넘파이 어레이와 관련된 많은 기능이 뷰 기능을 이용한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr_slice</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">8</span><span class="p">]</span>
+<span class="n">arr_slice</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([12, 12, 12])
+</pre></div>
+</div>
+</div>
+</div>
+<p>슬라이스의 항목을 변경하면 <code class="docutils literal notranslate"><span class="pre">arr</span></code> 변수가 가리키는 어레이의 항목도 함께 달라진다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr_slice</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3450</span>
+<span class="n">arr</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([   0,    1,    2,    3,    4,   12, 3450,   12,    8,    9])
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong><code class="docutils literal notranslate"><span class="pre">copy()</span></code> 메서드</strong></p>
+<p>원본을 그대로 유지하려면 <code class="docutils literal notranslate"><span class="pre">copy()</span></code> 메서드를 이용하여 사본을 만들어 활용할 것을 권장한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr_slice2</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">8</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">arr_slice2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  12, 3450,   12])
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">arr_slice2</span></code>를 변경해도 <code class="docutils literal notranslate"><span class="pre">arr</span></code>은 영향받지 않는다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr_slice2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="n">arr_slice2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([12, 12, 12])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([   0,    1,    2,    3,    4,   12, 3450,   12,    8,    9])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id5">
+<h3><span class="section-number">13.2.2. </span>2차원 어레이 인덱싱, 슬라이싱<a class="headerlink" href="numpy_2.html#id5" title="Link to this heading">#</a></h3>
+<p>2차원 이상의 다차원 어레이는 보다 다양한 인덱싱, 슬라이싱 기능을 제공한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr2d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]])</span>
+<span class="n">arr2d</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1, 2, 3],
+       [4, 5, 6],
+       [7, 8, 9]])
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>인덱싱</strong></p>
+<p>리스트의 인덱싱을 그대로 사용할 수 있다.</p>
+<ul class="simple">
+<li><p>0번 인덱스 항목: 길이가 3인 1차원 어레이</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr2d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 2, 3])
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>0번 인덱스의 2번 인덱스 항목: 리스트 인덱싱 방식</p>
+<ul>
+<li><p>0번 인덱스의 항목이 리스트이며, 그 리스트의 2번 인덱스 항목 확인</p></li>
+</ul>
+</li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr2d</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+<p>위 인덱싱을 2차원 어레이 인덱싱 방식으로 아래와 같이 쉽게 할 수 있다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr2d</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>슬라이싱</strong></p>
+<p>리스트 슬라이싱 방식을 동일하게 적용할 수 있다.</p>
+<ul class="simple">
+<li><p>1번 인덱스 이전까지</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr2d</span><span class="p">[:</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1, 2, 3]])
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>2번 인덱스 이전까지</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr2d</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1, 2, 3],
+       [4, 5, 6]])
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>전체 항목 슬라이싱</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr2d</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1, 2, 3],
+       [4, 5, 6],
+       [7, 8, 9]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>행과 열을 함께 슬라이싱하려면 행과, 열에 대한 슬라이싱을 동시에 지정한다.</p>
+<ul class="simple">
+<li><p>행 기준: 2번 행 이전까지</p></li>
+<li><p>열 기준: 1번 열부터 끝까지</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr2d</span><span class="p">[:</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[2, 3],
+       [5, 6]])
+</pre></div>
+</div>
+</div>
+</div>
+<div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/datapy/master/jupyter-book/images/numpy149-1.png" style="width:350px;"></div><p>인덱싱과 슬라이싱이 행과 열 각각에 대해 독립적으로 사용될 수 있다.</p>
+<ul class="simple">
+<li><p>행 기준: 1번 행 인덱싱</p></li>
+<li><p>열 기준: 2번 열 이전까지</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr2d</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([4, 5])
+</pre></div>
+</div>
+</div>
+</div>
+<div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/datapy/master/jupyter-book/images/numpy149-4.png" style="width:350px;"></div><p><strong>주의사항:</strong></p>
+<p>인덱싱을 사용하는 만큼 결과 어레이의 차원이 기존 어레이의 차원보다 1씩 줄어든다.
+예를 들어, 아래 코드는 0번 축에 대해 인덱싱을 사용하였기에 0번 축이 사라지고 1번 축이 대신 0번축의 역할을 한다 라고 말할 수 있다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr2d</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2,)
+</pre></div>
+</div>
+</div>
+</div>
+<p>동일한 항목을 사용하지만 인덱싱을 사용할 때와 아닐 때의 결과는 다른 모양의 어레이가 된다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr2d</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[4, 5]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>모양은 사용되는 슬라이싱의 구간에 의존한다.</p>
+<ul class="simple">
+<li><p>행 기준: 1번 행 하나만 사용</p></li>
+<li><p>열 기준: 0번 열, 1번 열 사용.</p></li>
+</ul>
+<p>따라서 결과는 (1, 2) 모양의 어레이다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr2d</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(1, 2)
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>행 기준: 행 전체</p></li>
+<li><p>열 기준: 2번 열 이전까지</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr2d</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1, 2],
+       [4, 5],
+       [7, 8]])
+</pre></div>
+</div>
+</div>
+</div>
+<div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/datapy/master/jupyter-book/images/numpy149-3.png" style="width:350px;"></div><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr2d</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1],
+       [4],
+       [7]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr2d</span><span class="p">[:</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">arr2d</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1, 0, 0],
+       [4, 0, 0],
+       [7, 8, 9]])
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>예제</strong></p>
+<p>먼저 아래 그림 모양의 2차원 어레이를 생성한다.
+길이가 36인 1차원 어레이를 (6, 6) 모양의 2차원 어레이로 항목을 재배열하기 위해
+<code class="docutils literal notranslate"><span class="pre">reshape()</span></code> 함수를 사용한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">36</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">arr</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0,  1,  2,  3,  4,  5],
+       [10, 11, 12, 13, 14, 15],
+       [20, 21, 22, 23, 24, 25],
+       [30, 31, 32, 33, 34, 35],
+       [40, 41, 42, 43, 44, 45],
+       [50, 51, 52, 53, 54, 55]])
+</pre></div>
+</div>
+</div>
+</div>
+<div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/datapy/master/jupyter-book/images/numpy-2darray.png" style="width:250px;"></div>
+<p><div style="text-align: center">&lt;그림 출처: <a href="https://scipy-lectures.org/intro/numpy/array_object.html#indexing-and-slicing">Scipy Lecture Notes</a>&gt;</div></p><p>위 그림에 색깔별로 표시된 어레이를 슬라이싱을 이용하여 구해보자.</p>
+<ul class="simple">
+<li><p>빨강색 1차원 어레이</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3, 4])
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>파랑색 2차원 어레이</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 2],
+       [12],
+       [22],
+       [32],
+       [42],
+       [52]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>열에 대해 슬라이싱 대신 인덱싱을 사용하면 1차원 어레이를 얻는다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 2, 12, 22, 32, 42, 52])
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>보라색 2차원 어레이 (스텝 활용)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[20, 22, 24],
+       [40, 42, 44]])
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>초록색 2차원 어레이</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span><span class="p">[</span><span class="mi">4</span><span class="p">:,</span> <span class="mi">4</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[44, 45],
+       [54, 55]])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id6">
+<h3><span class="section-number">13.2.3. </span>3차원 어레이 인덱싱, 슬라이싱<a class="headerlink" href="numpy_2.html#id6" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">arr3d</span></code>는 (2, 2, 3) 모양의 3차원 어레이다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr3d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> 
+                   <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]],</span> 
+                  
+                  <span class="p">[[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span> 
+                   <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">]]])</span>
+<span class="n">arr3d</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[ 1,  2,  3],
+        [ 4,  5,  6]],
+
+       [[ 7,  8,  9],
+        [10, 11, 12]]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr3d</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2, 2, 3)
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>인덱싱</strong></p>
+<p>모양이 (2, 2, 3)인 3차원 어레이의 0번 인덱스 항목은 (2, 3) 크기의 2차원 어레이다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr3d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1, 2, 3],
+       [4, 5, 6]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>0번 인덱스 항목인 2차원 어레이의 항목을 일정한 값으로 바꾸기 위해 인덱싱을 활용할 수 있다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 기존 항목 기억해 두기</span>
+<span class="n">old_values</span> <span class="o">=</span> <span class="n">arr3d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr3d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">arr3d</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[42, 42, 42],
+        [42, 42, 42]],
+
+       [[ 7,  8,  9],
+        [10, 11, 12]]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># arr3d를 계속 사용하기 위해 원래 값으로 되돌린다.</span>
+
+<span class="n">arr3d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">old_values</span>
+<span class="n">arr3d</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[ 1,  2,  3],
+        [ 4,  5,  6]],
+
+       [[ 7,  8,  9],
+        [10, 11, 12]]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>모양이 (2, 2, 3)인 3차원 행렬의 1번 행, 0번 열의 항목은 길이가 3인 1차원 어레이다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr3d</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([7, 8, 9])
+</pre></div>
+</div>
+</div>
+</div>
+<p>실제로 아래 처럼 1번행과 1번 행의 0번 열의 값을 확인하면 동일한 값이 나온다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">arr3d</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 7,  8,  9],
+       [10, 11, 12]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([7, 8, 9])
+</pre></div>
+</div>
+</div>
+</div>
+<p>모양이 (2, 2, 3)인 3차원 행렬의 1번 행, 0번 열, 2번 인덱스의 항목은 길이가 정수 9이다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr3d</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9
+</pre></div>
+</div>
+</div>
+</div>
+<p>실제로 아래 처럼 1번행과 1번 행, 0번 열, 2번 인덱스의 값을 확인하면 동일한 값이 나온다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr3d</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>슬라이싱</strong></p>
+<p>3차원 어레이 슬라이싱은 기본적으로 2차원 어레이 슬라이싱 기능과 동일하게 작동한다.
+여기서는 칼라 이미지 데이터를 3차원 어레이로, 흑백 이미지를 2차원 어레이로 다루면서
+인덱싱과 슬라이싱을 이용하여 이미지를 조작하는 간단한 방법을 설명한다.</p>
+<p>먼저 너구리 얼굴 이미지를 가져온다.
+아래 코드는 scipy 패키지에서 기본으로 제공하는 너구리 얼굴 사진을 3차원 어레이로 가져온다.</p>
+<p><strong>주의사항:</strong> 아래와 같은 코드가 있다는 정도 기억해 두기 바란다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.datasets</span>
+<span class="n">face</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">face</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">face</span></code>는 너구리 얼굴 이미지를 3차원 어레이로 불러온다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">imshow()</span></code> 함수는 3차원 이미지 어레이를 이미지로 보여주는 함수이다.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">show()</span></code> 함수는 지정된 여러 개의 이미지를 동시에 화면에 띄우는 기능을 갖는 함수이다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">face</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/e0f38f580936361f39f3a97cdc4c852a9f9684eee2ea147c4c57a66661800e18.png" src="_images/e0f38f580936361f39f3a97cdc4c852a9f9684eee2ea147c4c57a66661800e18.png" />
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">face</span></code>는 아래 모양의 3차원 어레이를 가리킨다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">face</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(768, 1024, 3)
+</pre></div>
+</div>
+</div>
+</div>
+<p>위 이미지에서 세로, 가로 축에 보여지는 숫자가 픽셀 수를 보여주며 정확한 픽셀 수는 다음과 같다.</p>
+<ul class="simple">
+<li><p>행: 768개</p></li>
+<li><p>열: 1024개</p></li>
+<li><p>각각의 픽셀에 길이가 3인 1차원 어레이 포함.</p></li>
+</ul>
+<p>3차원 넘파이 어레이로 불러온 너구리 사진의 실제 값은 다음과 같다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">face</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[121, 112, 131],
+        [138, 129, 148],
+        [153, 144, 165],
+        ...,
+        [119, 126,  74],
+        [131, 136,  82],
+        [139, 144,  90]],
+
+       [[ 89,  82, 100],
+        [110, 103, 121],
+        [130, 122, 143],
+        ...,
+        [118, 125,  71],
+        [134, 141,  87],
+        [146, 153,  99]],
+
+       [[ 73,  66,  84],
+        [ 94,  87, 105],
+        [115, 108, 126],
+        ...,
+        [117, 126,  71],
+        [133, 142,  87],
+        [144, 153,  98]],
+
+       ...,
+
+       [[ 87, 106,  76],
+        [ 94, 110,  81],
+        [107, 124,  92],
+        ...,
+        [120, 158,  97],
+        [119, 157,  96],
+        [119, 158,  95]],
+
+       [[ 85, 101,  72],
+        [ 95, 111,  82],
+        [112, 127,  96],
+        ...,
+        [121, 157,  96],
+        [120, 156,  94],
+        [120, 156,  94]],
+
+       [[ 85, 101,  74],
+        [ 97, 113,  84],
+        [111, 126,  97],
+        ...,
+        [120, 156,  95],
+        [119, 155,  93],
+        [118, 154,  92]]], dtype=uint8)
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>RGB 색상 정보</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">768x1024</span></code> 개의 픽셀에 포함된 길이 3인 어레이는
+R(빨강), G(초록), B(파랑) 색상에 대한 정보를 각각 담는다.
+또한 색상 정보는 각각 0부터 255 사이의 값을 사용한다.</p>
+<p>어레이에 사용된 값들의 정확한 자료형은 <code class="docutils literal notranslate"><span class="pre">uint8</span></code>, 즉, 8 비트로 표현된 양의 정수 자료형이다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">face</span><span class="o">.</span><span class="n">dtype</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dtype(&#39;uint8&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">face</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">face</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>255
+</pre></div>
+</div>
+</div>
+</div>
+<p>RGB 값의 의미는 다음 그림과 같으며
+RGB 값이 변할 때의 색 변화는 <a class="reference external" href="https://www.w3schools.com/colors/colors_rgb.asp">Colors RGB and RGBA</a>에서 직접 확인할 수 있다.</p>
+<div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/datapy/master/jupyter-book/images/rgb-colors.png" style="width:500px;"></div>
+<p><div style="text-align: center">&lt;그림 출처: <a href="https://www.lambdatest.com/blog/hsl-colors-in-css/">HSL Colors in CSS</a>&gt;</div></p><p><strong>색상 정보 정규화</strong></p>
+<p>여기서는 픽셀 정보를 0과 1사이의 부동소수점으로 변경해서 사용한다.
+이유는 여러 이미지 변환을 시도할 때 0과 1사이의 부동소수점의 처리하는 게
+보다 일반적이기 때문이다.</p>
+<p>RGB 정보의 최댓값이 255이기에 모든 항목을 255로 나누어 0과 1사이의 값으로
+정규화<font size='2'>normalization</font>시킨다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">face</span> <span class="o">=</span> <span class="n">face</span><span class="o">/</span><span class="mi">255</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>이미지 자르기</strong></p>
+<p>너구리의 얼굴을 잘라 새로운 사진을 만들고자 한다.
+이를 위해 0번과 1번 축에 대한 간단한 슬라이싱을 적용한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">face</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/8fa25e4c7355c54c4480d46cc70e4c5c0c2716e10bc233a35feeeb5d78ec4059.png" src="_images/8fa25e4c7355c54c4480d46cc70e4c5c0c2716e10bc233a35feeeb5d78ec4059.png" />
+</div>
+</div>
+<p>위 너구리 사진을 보면 머리 부분은 0번 축에 있어서는 0번 부터 500번 인덱스 정도까지,
+1번 축에 대해서는 350번에서 950번 인덱스 영역으로 지정할 수 있을 것 같다.
+언급된 행과 열에 대해 슬라이싱을 실행한 후 이미지를 확인하면 다음과 같다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">face_cut</span> <span class="o">=</span> <span class="n">face</span><span class="p">[:</span><span class="mi">500</span><span class="p">,</span> <span class="mi">350</span><span class="p">:</span><span class="mi">950</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">face_cut</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/e522a6ff427ea22082cc354887ad51945120002f11f4c0595046117a71713a3f.png" src="_images/e522a6ff427ea22082cc354887ad51945120002f11f4c0595046117a71713a3f.png" />
+</div>
+</div>
+<p><strong>RGB 색상 확인</strong></p>
+<p>칼라 사진의 RGB 정보를 하나씩 떼어내어 확인해보자.
+먼저 빨강(Red)색 요소는 각 픽셀의 0번 인덱스로 구성된다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">face_cut_red</span> <span class="o">=</span> <span class="n">face_cut</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">face_cut_red</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Reds_r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/36139b83cbc29e40b9b55fbf1e93aa626f98ab535622b4eeb98ffa912f24b59f.png" src="_images/36139b83cbc29e40b9b55fbf1e93aa626f98ab535622b4eeb98ffa912f24b59f.png" />
+</div>
+</div>
+<p>초록(Green)색 요소는 각 픽셀의 1번 인덱스로 구성된다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">face_cut_green</span> <span class="o">=</span> <span class="n">face_cut</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">face_cut_green</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greens_r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/5f727b3f2ac520a53c4d75c8b4946de15d8dad2c48edc39496fffb27924609c6.png" src="_images/5f727b3f2ac520a53c4d75c8b4946de15d8dad2c48edc39496fffb27924609c6.png" />
+</div>
+</div>
+<p>파랑(Blue)색 요소는 각 픽셀의 2번 인덱스로 구성된다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">face_cut_blue</span> <span class="o">=</span> <span class="n">face_cut</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">face_cut_blue</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues_r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/e76b445871adf8d8732abfa909b4c690ade260a8bd185446bc10df87f7ba389c.png" src="_images/e76b445871adf8d8732abfa909b4c690ade260a8bd185446bc10df87f7ba389c.png" />
+</div>
+</div>
+<div class="info admonition">
+<p class="admonition-title">색지도<font size='2'>color map</font></p>
+<p>matplotlib 라이브러리에서 이미지를 출력할 때 색지도<font size='2'>color map</font>를 선택해야 한다.
+색지도는 <code class="docutils literal notranslate"><span class="pre">cmap</span></code> 옵션으로 지정하며 앞서 R, G, B에 해당하는 색지도는 각각 <code class="docutils literal notranslate"><span class="pre">Reds</span></code>, <code class="docutils literal notranslate"><span class="pre">Greens</span></code>, <code class="docutils literal notranslate"><span class="pre">Blues</span></code>가
+사용되었으며 아래 이미지 중에서 선택되었다.
+참고로 <code class="docutils literal notranslate"><span class="pre">_r</span></code>은 선택된 색지도를 역순으로 적용한다는 의미이다.</p>
+<br>
+<div align="center" border="1px"><img src="https://matplotlib.org/stable/_images/sphx_glr_colormaps_002_2_00x.png" style="width:80%;"></div>
+<p>보다 다양한 색지도는 <a class="reference external" href="https://matplotlib.org/stable/tutorials/colors/colormaps.html">Matplotlib: Choosing Colormaps</a>를
+참고한다.</p>
+</div>
+<p><strong>흑백 이미지 변환</strong></p>
+<p>흑백사진으로 변경하려면 RGB 정보를 전부 이용하여 하나의 값을 계산해야 한다.
+흑백 이미지의 명암을 구현하는 <strong>벡터 내적</strong> 수식은 다음과 같다.</p>
+<div class="math notranslate nohighlight">
+\[
+[R, G, B]\cdot[0.2989, 0.5870, 0.1140]
+= R \cdot 0.2989 + G \cdot 0.5870 + B \cdot 0.1140
+\]</div>
+<p>벡터 내적 연산은 <code class="docutils literal notranslate"><span class="pre">dot()</span></code> 함수를 이용한 어레이의 내적 연산으로 쉽게 계산된다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">face_cut_gray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">face_cut</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.2989</span><span class="p">,</span> <span class="mf">0.5870</span><span class="p">,</span> <span class="mf">0.114</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>컬러 사진 데이터 3차원 어레이이와 3차원 벡터(1차원 어레이)의 점곱은
+3차원 어레이의 마지막 축, 즉 2번 축의 항목들과 벡터의 내적으로 계산된다.
+따라서 결과는 2차원 어레이며, 흑백 이미지의 정보를 모두 갖고 있는,
+보다 선명을 명암을 보여주는 흑백 이미지 데이터가 생성된다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">face_cut_gray</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.1967, 0.2476, 0.2821, ..., 0.215 , 0.2164, 0.2164],
+       [0.2006, 0.181 , 0.2665, ..., 0.2189, 0.2189, 0.2203],
+       [0.2585, 0.2036, 0.2499, ..., 0.2198, 0.2189, 0.2203],
+       ...,
+       [0.6169, 0.5894, 0.5686, ..., 0.5923, 0.6055, 0.6094],
+       [0.6432, 0.6236, 0.603 , ..., 0.5859, 0.5898, 0.5968],
+       [0.646 , 0.6421, 0.5891, ..., 0.5772, 0.5693, 0.5721]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">face_cut_gray</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(500, 600)
+</pre></div>
+</div>
+</div>
+</div>
+<p>흑백 사진으로 출력하려면 색지도 인자로 <code class="docutils literal notranslate"><span class="pre">gray</span></code>를 지정한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">face_cut_gray</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/1ed30738aa8b3d837ab578c22d6fa2bd11101c2fff3afd9d2f5fd524890565ea.png" src="_images/1ed30738aa8b3d837ab578c22d6fa2bd11101c2fff3afd9d2f5fd524890565ea.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="id7">
+<h2><span class="section-number">13.3. </span>부울 인덱싱<a class="headerlink" href="numpy_2.html#id7" title="Link to this heading">#</a></h2>
+<p>부울 인덱싱<font size='2'>boolean indexing</font>은
+지금까지 소개한 인덱싱/슬라이싱 기법이 처리하지 못하는 기능을 제공한다.</p>
+<section id="id8">
+<h3><span class="section-number">13.3.1. </span>1차원 부울 어레이 활용<a class="headerlink" href="numpy_2.html#id8" title="Link to this heading">#</a></h3>
+<p>1차원 부울 어레이를 이용한 인덱싱을 설명하기 위해 아래 두 개의 어레이를 이용한다.</p>
+<ul class="simple">
+<li><p>길이가 7인 1차원 어레이: 중복된 사람 이름을 항목으로 담고 있는 벡터</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s1">&#39;Bob&#39;</span><span class="p">,</span> <span class="s1">&#39;Joe&#39;</span><span class="p">,</span> <span class="s1">&#39;Will&#39;</span><span class="p">,</span> <span class="s1">&#39;Bob&#39;</span><span class="p">,</span> <span class="s1">&#39;Will&#39;</span><span class="p">,</span> <span class="s1">&#39;Joe&#39;</span><span class="p">,</span> <span class="s1">&#39;Joe&#39;</span><span class="p">])</span>
+<span class="n">names</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;Bob&#39;, &#39;Joe&#39;, &#39;Will&#39;, &#39;Bob&#39;, &#39;Will&#39;, &#39;Joe&#39;, &#39;Joe&#39;], dtype=&#39;&lt;U4&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>(7, 4) 모양의 2차원 어레이. <code class="docutils literal notranslate"><span class="pre">randn()</span></code> 함수는 표준 정규 분포를 이용하여 임의의 부동소수점으로 이루어진 어레이를 생성한다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.7886,  0.4365,  0.0965, -1.8635],
+       [-0.2774, -0.3548, -0.0827, -0.627 ],
+       [-0.0438, -0.4772, -1.3139,  0.8846],
+       [ 0.8813,  1.7096,  0.05  , -0.4047],
+       [-0.5454, -1.5465,  0.9824, -1.1011],
+       [-1.185 , -0.2056,  1.4861,  0.2367],
+       [-1.0238, -0.713 ,  0.6252, -0.1605]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>부울 인덱싱을 설명하기 위해 <code class="docutils literal notranslate"><span class="pre">data</span></code> 가 가리키는 2차원 어레이의 각 행과 <code class="docutils literal notranslate"><span class="pre">names</span></code> 어레이가 가리키는 각 항목이
+서로 연관된다고 가정한다.
+예를 들어, <code class="docutils literal notranslate"><span class="pre">'Bob'</span></code>은 0번 인덱스와 3번 인덱스의 행과 연관되고,
+<code class="docutils literal notranslate"><span class="pre">'Joe'</span></code>는 1번, 5번, 6번 인덱스의 행과 연관된다.</p>
+<p>이제 <code class="docutils literal notranslate"><span class="pre">data</span></code> 어레이에서 <code class="docutils literal notranslate"><span class="pre">'Bob'</span></code>과 연관된 행만 추출하여 2차원 어레이를 생성하려 해보자.
+먼저 <code class="docutils literal notranslate"><span class="pre">names</span></code>에 포함된 이름이 <code class="docutils literal notranslate"><span class="pre">'Bob'</span></code>인지 여부를 확인한다.
+그러면 진리값으로 이루어진 길이가 7인 어레이가 생성된다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name_Bob</span> <span class="o">=</span> <span class="p">(</span><span class="n">names</span> <span class="o">==</span> <span class="s1">&#39;Bob&#39;</span><span class="p">)</span>
+<span class="n">name_Bob</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ True, False, False,  True, False, False, False])
+</pre></div>
+</div>
+</div>
+</div>
+<p>이제 <code class="docutils literal notranslate"><span class="pre">name_Bob</span></code>을 <code class="docutils literal notranslate"><span class="pre">data</span></code> 2차원 어레이에 인덱싱으로 적용하면
+<code class="docutils literal notranslate"><span class="pre">True</span></code>가 위치한 인덱스에 해당하는 행인 0번과 3번 행만 추출해서
+새로운 2차원 어레이를 생성한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="n">name_Bob</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.7886,  0.4365,  0.0965, -1.8635],
+       [ 0.8813,  1.7096,  0.05  , -0.4047]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>인덱싱에 사용되는 부울 어레이의 길이가 사용되는 인덱싱에 적용되는 축의 길이와 동일해야 함에 주의한다.</p>
+<p><strong>부울 인덱싱과 일반 인덱싱/슬라이싱 혼합</strong></p>
+<p>부울 인덱싱과 일반 인덱싱, 슬라이싱을 혼합할 수 있다.</p>
+<ul class="simple">
+<li><p>행 기준: Bob이 포함된 행의 인덱스를 갖는 행</p></li>
+<li><p>열 기준: 3번 열</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="n">name_Bob</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1.8635, -0.4047])
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>행 기준: Bob이 포함된 행의 인덱스를 갖는 행</p></li>
+<li><p>열 기준: 2번 열 이후 전체</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="n">name_Bob</span><span class="p">,</span> <span class="mi">2</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.0965, -1.8635],
+       [ 0.05  , -0.4047]])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id9">
+<h3><span class="section-number">13.3.2. </span>마스크 활용<a class="headerlink" href="numpy_2.html#id9" title="Link to this heading">#</a></h3>
+<p><strong>부울 마스크</strong><font size='2'>boolean mask</font>는
+논리 연산자(<code class="docutils literal notranslate"><span class="pre">~</span></code>, <code class="docutils literal notranslate"><span class="pre">&amp;</span></code>, <code class="docutils literal notranslate"><span class="pre">|</span></code>)를 적용하여 생성된 부울 어레이 표현식이다.
+마스크를 활용하면 보다 다양한 부울 인덱싱을 간단하게 적용할 수 있다.</p>
+<p>예를 들어, 이름이 <code class="docutils literal notranslate"><span class="pre">'Bob'</span></code>이 아닌 이름과 연관된 행만 가져오려면
+<code class="docutils literal notranslate"><span class="pre">==</span></code> 대신에 <code class="docutils literal notranslate"><span class="pre">!=</span></code>를 이용하거나 <code class="docutils literal notranslate"><span class="pre">==</span></code>와 <code class="docutils literal notranslate"><span class="pre">~</span></code> 연산자를 함께 이용한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mask</span> <span class="o">=</span> <span class="n">names</span> <span class="o">!=</span> <span class="s1">&#39;Bob&#39;</span>
+<span class="n">data</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.2774, -0.3548, -0.0827, -0.627 ],
+       [-0.0438, -0.4772, -1.3139,  0.8846],
+       [-0.5454, -1.5465,  0.9824, -1.1011],
+       [-1.185 , -0.2056,  1.4861,  0.2367],
+       [-1.0238, -0.713 ,  0.6252, -0.1605]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mask</span> <span class="o">=</span> <span class="o">~</span><span class="n">name_Bob</span>
+<span class="n">data</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-0.2774, -0.3548, -0.0827, -0.627 ],
+       [-0.0438, -0.4772, -1.3139,  0.8846],
+       [-0.5454, -1.5465,  0.9824, -1.1011],
+       [-1.185 , -0.2056,  1.4861,  0.2367],
+       [-1.0238, -0.713 ,  0.6252, -0.1605]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>다음은 <code class="docutils literal notranslate"><span class="pre">'Bob'</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">'Will'</span></code> 이 위치한 인덱스에 해당하는 행만 가져온다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">names</span> <span class="o">==</span> <span class="s1">&#39;Bob&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">names</span> <span class="o">==</span> <span class="s1">&#39;Will&#39;</span><span class="p">)</span>
+<span class="n">data</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.7886,  0.4365,  0.0965, -1.8635],
+       [-0.0438, -0.4772, -1.3139,  0.8846],
+       [ 0.8813,  1.7096,  0.05  , -0.4047],
+       [-0.5454, -1.5465,  0.9824, -1.1011]])
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>항목 업데이트</strong></p>
+<p>마스크를 이용하여 전체 행 또는 전체 열을 특정 값으로 변경할 수 있다.
+아래 코드는 <code class="docutils literal notranslate"><span class="pre">data</span></code>에서 <code class="docutils literal notranslate"><span class="pre">'Joe'</span></code>와 관련 없는 행의 항목을 모두 7로 변경한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mask</span> <span class="o">=</span> <span class="n">names</span> <span class="o">!=</span> <span class="s1">&#39;Joe&#39;</span>
+<span class="n">data</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 7.    ,  7.    ,  7.    ,  7.    ],
+       [-0.2774, -0.3548, -0.0827, -0.627 ],
+       [ 7.    ,  7.    ,  7.    ,  7.    ],
+       [ 7.    ,  7.    ,  7.    ,  7.    ],
+       [ 7.    ,  7.    ,  7.    ,  7.    ],
+       [-1.185 , -0.2056,  1.4861,  0.2367],
+       [-1.0238, -0.713 ,  0.6252, -0.1605]])
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>다차원 마스크</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">data</span></code>가 가리키는 2차원 어레이에서 음수 항목만 추출해서 1차원 어레이를 생성해보자.
+이를 위해 먼저 어레이의 각 항목이 음수인지 여부를 확인하는 부울 마스크를 다음과 같이 생성한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mask</span> <span class="o">=</span> <span class="n">data</span> <span class="o">&lt;</span> <span class="mi">0</span>
+<span class="n">mask</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[False, False, False, False],
+       [ True,  True,  True,  True],
+       [False, False, False, False],
+       [False, False, False, False],
+       [False, False, False, False],
+       [ True,  True, False, False],
+       [ True,  True, False,  True]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>위 마스크를 <code class="docutils literal notranslate"><span class="pre">data</span></code>에 인덱싱으로 적용하면 음수 항목만 끄집어 낸 1차원 어레이가 생성된다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.2774, -0.3548, -0.0827, -0.627 , -1.185 , -0.2056, -1.0238,
+       -0.713 , -0.1605])
+</pre></div>
+</div>
+</div>
+</div>
+<p>또한 마스크를 이용하여 모든 음수 항목을 0으로 변경할 수도 있다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[7.    , 7.    , 7.    , 7.    ],
+       [0.    , 0.    , 0.    , 0.    ],
+       [7.    , 7.    , 7.    , 7.    ],
+       [7.    , 7.    , 7.    , 7.    ],
+       [7.    , 7.    , 7.    , 7.    ],
+       [0.    , 0.    , 1.4861, 0.2367],
+       [0.    , 0.    , 0.6252, 0.    ]])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id10">
+<h3><span class="section-number">13.3.3. </span>부울 인덱싱과 뷰<a class="headerlink" href="numpy_2.html#id10" title="Link to this heading">#</a></h3>
+<p>부울 인덱싱은 뷰를 이용하지 않고 항상 새로운 어레이를 생성한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data2</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">names</span> <span class="o">==</span> <span class="s1">&#39;Bob&#39;</span><span class="p">]</span>
+<span class="n">data2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[7., 7., 7., 7.],
+       [7., 7., 7., 7.]])
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">data2</span></code>의 0번 행을 모두 -1로 변경해도 <code class="docutils literal notranslate"><span class="pre">data</span></code>는 변하지 않는다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">data2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[-1., -1., -1., -1.],
+       [ 7.,  7.,  7.,  7.]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>하지만 <code class="docutils literal notranslate"><span class="pre">data</span></code>는 변경되지 않았다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[7.    , 7.    , 7.    , 7.    ],
+       [0.    , 0.    , 0.    , 0.    ],
+       [7.    , 7.    , 7.    , 7.    ],
+       [7.    , 7.    , 7.    , 7.    ],
+       [7.    , 7.    , 7.    , 7.    ],
+       [0.    , 0.    , 1.4861, 0.2367],
+       [0.    , 0.    , 0.6252, 0.    ]])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id11">
+<h2><span class="section-number">13.4. </span>팬시 인덱싱<a class="headerlink" href="numpy_2.html#id11" title="Link to this heading">#</a></h2>
+<p><strong>팬시 인덱싱</strong><font size='2'>fancy indexing</font>은 인덱스로 구성된 1차원 리스트와 튜플을 이용한다.
+팬시 인덱싱 또한 부울 인덱싱처럼 뷰를 이용하지 않고 객체를 항상 새로 생성한다.</p>
+<section id="id12">
+<h3><span class="section-number">13.4.1. </span>1차원 어레이 팬시 인덱싱<a class="headerlink" href="numpy_2.html#id12" title="Link to this heading">#</a></h3>
+<p>먼저 6개의 항목을 갖는 1차원 어레이를 생성한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">arr</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 3,  6,  9, 12, 15, 18])
+</pre></div>
+</div>
+</div>
+</div>
+<p>주어진 어레이의 인덱스로 구성된 리스트를 이용하여 인덱싱을 실행하면
+어레이에서 리스트의 포함된 인덱스에 해당하는 값들로 구성된
+어레이가 생성된다.
+따라서 팬시 인덱싱으로 생성된 어레이의 길이는 팬시 인덱싱에 사용된 리스트의 길이와 동일하다.</p>
+<p>아래 코드는 0부터 5사이의 정수를 무작위로 10개 뽑아 어레이를 생성한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fancy_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">fancy_list</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([4, 0, 0, 1, 2, 4, 5, 0, 0, 5])
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">arr</span></code> 어레이와 함께 팬시 인덱싱을 적용하면
+<code class="docutils literal notranslate"><span class="pre">fancy_list</span></code>에 포함된 항목을 인덱스로 갖는 <code class="docutils literal notranslate"><span class="pre">arr</span></code> 어레이의 항목 10개로
+구성된 어레이가 생성된다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span><span class="p">[</span><span class="n">fancy_list</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([15,  3,  3,  6,  9, 15, 18,  3,  3, 18])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id13">
+<h3><span class="section-number">13.4.2. </span>2차원 어레이 팬시 인덱싱<a class="headerlink" href="numpy_2.html#id13" title="Link to this heading">#</a></h3>
+<p>아래 코드는 0부터 31까지의 정수로 채워진 (8, 4) 모양의 2차원 어레이를 생성한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">arr</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0,  1,  2,  3],
+       [ 4,  5,  6,  7],
+       [ 8,  9, 10, 11],
+       [12, 13, 14, 15],
+       [16, 17, 18, 19],
+       [20, 21, 22, 23],
+       [24, 25, 26, 27],
+       [28, 29, 30, 31]])
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>0번 축 팬시 인덱싱</strong></p>
+<p>아래 두 예제는 하나의 인덱스 리스트를 이용한 전형적인 팬시 인덱싱의 활용을 보여준다.
+0번 축에 대해 인덱싱이 적용됨을 주목한다.</p>
+<ul class="simple">
+<li><p>예제 1: <code class="docutils literal notranslate"><span class="pre">arr</span></code> 의 4번, 3번, 0번, 6번 인덱스에 해당하는 항목을 모아서 새로운 어레이를 생성한다.
+정해진 순서대로 항목을 재배열한다는 점에 주의한다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span><span class="p">[[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[16, 17, 18, 19],
+       [12, 13, 14, 15],
+       [ 0,  1,  2,  3],
+       [24, 25, 26, 27]])
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>예제 2: 음수 인덱스도 사용할 수 있다.
+밑에서 셋째, 다섯째, 일곱째 항목으로 이루어진 어레이는 다음과 같이 구한다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span><span class="p">[[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">7</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[20, 21, 22, 23],
+       [12, 13, 14, 15],
+       [ 4,  5,  6,  7]])
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>1번 축 팬시 인덱싱</strong></p>
+<p>2차원 어레이의 1번 축에 팬시 인덱싱을 적용하려면 모든 행을 선택하는 기능을 함께 사용한다.
+아래 코드는 전체 행을 대상으로 0번, 3번, 1번 열을 추출해서 2차원 어레이를 생성한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0,  3,  1],
+       [ 4,  7,  5],
+       [ 8, 11,  9],
+       [12, 15, 13],
+       [16, 19, 17],
+       [20, 23, 21],
+       [24, 27, 25],
+       [28, 31, 29]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>축별 팬시 인덱싱을 연속으로 실행할 수도 있다.
+아래 코드는 1번, 5번, 7번, 2번 행에서 각각 0번, 3번, 1번 항목을
+추출하여 2차원 어레이를 생성한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">]][:,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 4,  7,  5],
+       [20, 23, 21],
+       [28, 31, 29],
+       [ 8, 11,  9]])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id14">
+<h3><span class="section-number">13.4.3. </span>축과 팬시 인덱싱<a class="headerlink" href="numpy_2.html#id14" title="Link to this heading">#</a></h3>
+<p>여러 개의 인덱스 리스트를 사용할 수도 있다.
+단, 모든 리스트의 길이가 동일해야 하며,
+각 리스트의 동일한 위치의 항목들로 구성된 튜플이 가리키는 값을 차례대로 추출한다.
+따라서 여기서도 축이 중요한 역할을 수행한다.</p>
+<p>아래 코드는 <code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">0)</span></code>, <code class="docutils literal notranslate"><span class="pre">(5,</span> <span class="pre">3)</span></code>, <code class="docutils literal notranslate"><span class="pre">(7,</span> <span class="pre">2)</span></code>, <code class="docutils literal notranslate"><span class="pre">(2,</span> <span class="pre">2)</span></code> 좌표에 위치한 항목으로 이루어진 어레이는 다음과 같이
+축별로 항목을 모아놓은 두 개의 인덱스 어레이를 사용해서 팬시 인덱싱을 진행한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 4, 23, 29, 10])
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>예제 1</strong></p>
+<p>아래 이미지 모양의 2차원 어레이에서 색깔로 구분된 1차원 또는 2차원 어레이를 추출해보자.</p>
+<div align="center" border="1px"><img src="https://raw.githubusercontent.com/codingalzi/datapy/master/jupyter-book/images/fancy_indexing.png" style="width:250px;"></div>
+<p><div style="text-align: center">&lt;그림 출처: <a href="https://scipy-lectures.org/intro/numpy/array_object.html#indexing-and-slicing">Scipy Lecture Notes</a>&gt;</div></p>
+<p>먼저 이미지 모양의 2차원 어레이를 다음처럼 생성한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">36</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">arr</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0,  1,  2,  3,  4,  5],
+       [10, 11, 12, 13, 14, 15],
+       [20, 21, 22, 23, 24, 25],
+       [30, 31, 32, 33, 34, 35],
+       [40, 41, 42, 43, 44, 45],
+       [50, 51, 52, 53, 54, 55]])
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>초록색 1차원 어레이: 0번 축과 1번 축의 팬시 인덱싱 조합</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 1, 12, 23, 34, 45])
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>빨강색 1차원 어레이: 0번 축 팬시 인덱싱과 1번 축 인덱싱</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="mi">2</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 2, 22, 52])
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>파랑색 2차원 어레이: 0번 축 슬라이싱과 1번 축 팬시 인덱싱</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span><span class="p">[</span><span class="mi">3</span><span class="p">:,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[30, 32, 35],
+       [40, 42, 45],
+       [50, 52, 55]])
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>예제 2</strong></p>
+<p>3차원 어레이에 대해서도 동일한 방식으로 팬시 인덱싱을 적용할 수 있다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">arr</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[[ 0,  1,  2,  3],
+        [ 4,  5,  6,  7]],
+
+       [[ 8,  9, 10, 11],
+        [12, 13, 14, 15]],
+
+       [[16, 17, 18, 19],
+        [20, 21, 22, 23]],
+
+       [[24, 25, 26, 27],
+        [28, 29, 30, 31]]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>아래 코드는 <code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">0,</span> <span class="pre">2)</span></code>와 <code class="docutils literal notranslate"><span class="pre">(2,</span> <span class="pre">1,</span> <span class="pre">3)</span></code> 좌표에 위치한 3개의 항목으로 구성된 1차원 어레이를 생성한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([10, 23])
+</pre></div>
+</div>
+</div>
+</div>
+<p>반면에 아래 코드는 <code class="docutils literal notranslate"><span class="pre">(1,</span> <span class="pre">0)</span></code>과 <code class="docutils literal notranslate"><span class="pre">(2,</span> <span class="pre">1)</span></code> 좌표에 위치한 두 개의 항목으로 구성된 2차원 어레이를 생성한다.
+이유는 해당 좌표의 항목이 모두 길이가 4인 1차원 어레이이기 때문이다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arr</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 8,  9, 10, 11],
+       [20, 21, 22, 23]])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id15">
+<h2><span class="section-number">13.5. </span>연습문제<a class="headerlink" href="numpy_2.html#id15" title="Link to this heading">#</a></h2>
+<p>참고: <a class="reference external" href="https://colab.research.google.com/github/codingalzi/datapy/blob/master/practices/practice-numpy_2.ipynb">(실습) 어레이 인덱싱</a></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="numpy_1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">12. </span>넘파이 어레이</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="numpy_3.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">14. </span>어레이 중심 프로그래밍</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="numpy_2.html#id2">13.1. 어레이의 축과 인덱스</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="numpy_2.html#id3">13.2. 인덱싱과 슬라이싱</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="numpy_2.html#id4">13.2.1. 1차원 어레이 인덱싱, 슬라이싱</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="numpy_2.html#id5">13.2.2. 2차원 어레이 인덱싱, 슬라이싱</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="numpy_2.html#id6">13.2.3. 3차원 어레이 인덱싱, 슬라이싱</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="numpy_2.html#id7">13.3. 부울 인덱싱</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="numpy_2.html#id8">13.3.1. 1차원 부울 어레이 활용</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="numpy_2.html#id9">13.3.2. 마스크 활용</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="numpy_2.html#id10">13.3.3. 부울 인덱싱과 뷰</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="numpy_2.html#id11">13.4. 팬시 인덱싱</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="numpy_2.html#id12">13.4.1. 1차원 어레이 팬시 인덱싱</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="numpy_2.html#id13">13.4.2. 2차원 어레이 팬시 인덱싱</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="numpy_2.html#id14">13.4.3. 축과 팬시 인덱싱</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="numpy_2.html#id15">13.5. 연습문제</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 코딩알지
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js@digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js@digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

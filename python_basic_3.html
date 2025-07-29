@@ -1,0 +1,1639 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>3. 기초 자료형 &#8212; 파이썬 데이터 분석</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css@digest=dfe6caa3a7d634c4db9b.css" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css@digest=dfe6caa3a7d634c4db9b.css" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css@digest=dfe6caa3a7d634c4db9b.css" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css@digest=dfe6caa3a7d634c4db9b.css" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css@v=fa44fd50.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css@v=a3416100.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css@v=13237357.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css@v=76b2166b.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css@v=be8a1c11.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css@v=4fa983c6.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css@v=ca93fcec.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css@v=95c83b7e.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js@digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js@digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js@digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js@v=9eb32ce0"></script>
+    <script src="_static/doctools.js@v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js@v=dc90522c"></script>
+    <script src="_static/clipboard.min.js@v=a7894cd8"></script>
+    <script src="_static/copybutton.js@v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js@v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js@v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js@v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js@v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'python_basic_3';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="4. 제어문" href="python_basic_4.html" />
+    <link rel="prev" title="2. 기초 문법" href="python_basic_2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="python_basic_3.html#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">파이썬 데이터 분석</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">파이썬 기초</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="python_basic_1.html">1. 프로그램 개발 환경</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_2.html">2. 기초 문법</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="python_basic_3.html#">3. 기초 자료형</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_4.html">4. 제어문</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_5.html">5. 모음 자료형</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_6.html">6. 함수</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_7.html">7. 파일</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_8.html">8. 모듈</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_basic_9.html">9. 객체 지향 프로그래밍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="from_scratch_1.html">10. 선형대수 기초</a></li>
+<li class="toctree-l1"><a class="reference internal" href="from_scratch_2.html">11. 통계 기초</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">넘파이</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="numpy_1.html">12. 넘파이 어레이</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numpy_2.html">13. 어레이 인덱싱</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numpy_3.html">14. 어레이 중심 프로그래밍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numpy_4.html">15. 어레이 변형</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numpy_5.html">16. 실전 예제: 붓꽃 데이터 분석</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">판다스</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="pandas_1.html">17. 판다스 데이터프레임</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pandas_2.html">18. 데이터프레임 인덱싱</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pandas_3.html">19. 데이터프레임 중심 프로그래밍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pandas_4.html">20. 판다스 활용: 기초 통계</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pandas_5.html">21. 데이터 결합/합병</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pandas_6.html">22. 다중 인덱스</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pandas_7.html">23. 데이터 그룹화</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">데이터 시각화</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="visualization_1.html">24. matplotlib.pyplot 1부</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization_2.html">25. matplotlib.pyplot 2부</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization_3.html">26. 판다스 시각화 도구</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization_4.html">27. Seaborn 시각화 라이브러리</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">시계열 데이터</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="pandas_timeseries.html">28. 시계열 데이터</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">실전 데이터 분석</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="casestudy_titanic.html">29. 타이타닉 데이터 분석</a></li>
+<li class="toctree-l1"><a class="reference internal" href="casestudy_california_housing.html">30. 캘리포니아 주택 가격</a></li>
+<li class="toctree-l1"><a class="reference internal" href="casestudy_oecd_bli.html">31. OECD 국가의 삶의 만족도</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/codingalzi/datapy/blob/master/jupyter-book/python_basic_3.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/codingalzi/datapy" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/codingalzi/datapy/issues/new?title=Issue%20on%20page%20%2Fpython_basic_3.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/python_basic_3.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>기초 자료형</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="python_basic_3.html#int">3.1. 정수 자료형: <code class="docutils literal notranslate"><span class="pre">int</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="python_basic_3.html#float">3.2. 부동 소수점 자료형: <code class="docutils literal notranslate"><span class="pre">float</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="python_basic_3.html#str">3.3. 문자열 자료형: <code class="docutils literal notranslate"><span class="pre">str</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="python_basic_3.html#id2">3.4. 유니코드와 바이트</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="python_basic_3.html#bool">3.5. 부울 자료형: <code class="docutils literal notranslate"><span class="pre">bool</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="python_basic_3.html#id3">3.6. 형 변환</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="python_basic_3.html#none">3.7. <code class="docutils literal notranslate"><span class="pre">None</span></code> 값</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="python_basic_3.html#id4">3.8. 날짜와 시간</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="sec-python-basic-3">
+<span id="id1"></span><h1><span class="section-number">3. </span>기초 자료형<a class="headerlink" href="python_basic_3.html#sec-python-basic-3" title="Link to this heading">#</a></h1>
+<p>파이썬은 다양한 기초 자료형을 기본으로 제공하며
+크게 스칼라 자료형과 모음 자료형으로 나뉜다.</p>
+<p>정수, 부동 소수점, 부울값(<code class="docutils literal notranslate"><span class="pre">True</span></code>와 <code class="docutils literal notranslate"><span class="pre">False</span></code>), 문자열, 날짜와 시간 등처럼
+단일한 값의 자료형이 <strong>스칼라</strong><font size='2'>scalar</font> 자료형이며,
+리스트, 튜플, 사전 등은 <strong>모음</strong><font size='2'>collections</font> 자료형이다.</p>
+<p>먼저 스칼라 자료형을 살펴 보고 <a class="reference internal" href="python_basic_5.html#sec-python-basic-5"><span class="std std-ref">모음 자료형</span></a>에서 모음 자료형을 소개한다.</p>
+<div class="info admonition">
+<p class="admonition-title">문자열 자료형</p>
+<p>문자열은 언어에 따라 스칼라 자료형 또는 모음 자료형으로 간주된다.
+예를 들어, C 언어에서는 문자열(<code class="docutils literal notranslate"><span class="pre">str</span></code>)을 문자(<code class="docutils literal notranslate"><span class="pre">chr</span></code>)로 이루어진 어레이로 정의하기에
+모음 자료형으로 다뤄야 한다.</p>
+<p>반면에 파이썬에서는 문자 자료형이 별도로 없다.
+그리고 문자열을 문자들의 모음으로 간주하기도 한다.
+이는 모음 자료형이 지원하는 인덱싱, 슬라이싱, <code class="docutils literal notranslate"><span class="pre">for</span></code> 반복문 활용 등을 문자열 자료형 또한 지원하기 때문이다.</p>
+</div>
+<section id="int">
+<h2><span class="section-number">3.1. </span>정수 자료형: <code class="docutils literal notranslate"><span class="pre">int</span></code><a class="headerlink" href="python_basic_3.html#int" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">int</span></code>는 정수 자료형이다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ival</span> <span class="o">=</span> <span class="mi">17239871</span>
+
+<span class="n">ival</span> <span class="o">**</span> <span class="mi">6</span>  <span class="c1"># ival의 6승</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>26254519291092456596965462913230729701102721
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="float">
+<h2><span class="section-number">3.2. </span>부동 소수점 자료형: <code class="docutils literal notranslate"><span class="pre">float</span></code><a class="headerlink" href="python_basic_3.html#float" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">float</span></code>는 유리수 자료형이다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fval</span> <span class="o">=</span> <span class="mf">7.243</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>나눗셈은 부동 소수점으로 계산된다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span> <span class="o">/</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.5
+</pre></div>
+</div>
+</div>
+</div>
+<p>몫은 정수형으로 계산된다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span> <span class="o">//</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<p>과학자들이 사용하는 표기법도 사용할 수 있다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fval2</span> <span class="o">=</span> <span class="mf">6.78e-5</span> <span class="c1"># 6.78 곱하기 10의 -5승</span>
+
+<span class="n">fval2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6.78e-05
+</pre></div>
+</div>
+</div>
+</div>
+<div class="info admonition">
+<p class="admonition-title">부동 소수점</p>
+<p>부동 소수점<font size='2'>floating point</font>이란 표현은
+컴퓨터가 실수를 유한 소수로 처리할 때
+소수점 이하를 제대로 다루지 못하기 데서 연유한다.</p>
+<p>실제로 컴퓨터의 한계로 인해 소수점 이하 특정 자릿수에서 반올림한 결과를
+이용하여 연산을 수행하기에 무리수 등을 다룰 때 결과에 실제 값과 오차가 발생한다.</p>
+</div>
+</section>
+<section id="str">
+<h2><span class="section-number">3.3. </span>문자열 자료형: <code class="docutils literal notranslate"><span class="pre">str</span></code><a class="headerlink" href="python_basic_3.html#str" title="Link to this heading">#</a></h2>
+<p><strong>따옴표</strong></p>
+<p>문자열은 작은따옴표(<code class="docutils literal notranslate"><span class="pre">'</span></code>) 또는 큰따옴표(<code class="docutils literal notranslate"><span class="pre">&quot;</span></code>)를 감싸며,
+따옴표의 종류는 아무 상관이 없다.
+단, 동종의 따옴표로 감싸야 한다는 점에 주의해야 한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="s1">&#39;작은따옴표를 사용하는 문자열&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="s2">&quot;큰따옴표를 사용하는 문자열&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>여러 줄로 이루어진 문자열은 삼중 큰따옴표로 감싼다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;여러 줄에 걸친 문자열은</span>
+<span class="s2">삼중 큰따옴표로 감싼다.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>문자열 메서드</strong></p>
+<p>문자열 자료형은 다양한 메서드를 제공한다.
+예를 들어, 문자열이 몇 줄로 이루어졌는가를
+확인하려면 <code class="docutils literal notranslate"><span class="pre">count()</span></code> 메서드를 이용하여
+줄바꿈 기호(<code class="docutils literal notranslate"><span class="pre">\n</span></code>)가 사용된 횟수를 세면 된다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
+</div>
+<p>문자열은 불변<font size='2'>immutable</font> 객체이다.
+아래 코드는 인덱싱을 이용한 특정 문자의 대체가 허용되지 않음을 보여준다.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">10</span><span class="p">]:</span> <span class="n">a</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;f&#39;</span>
+<span class="o">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span>                                 <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">2151</span><span class="n">a30ed055</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">----&gt;</span> <span class="mi">1</span> <span class="n">a</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;f&#39;</span>
+
+<span class="ne">TypeError</span><span class="p">:</span> <span class="s1">&#39;str&#39;</span> <span class="nb">object</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">support</span> <span class="n">item</span> <span class="n">assignment</span>
+</pre></div>
+</div>
+<p>따라서 <code class="docutils literal notranslate"><span class="pre">replace()</span></code>처럼 문자열을 변경하는 메서드는 새로운 문자열을 생성하는 데에
+사용된다.</p>
+<p>아래 코드는 <code class="docutils literal notranslate"><span class="pre">a</span></code>가 가리키는 문자열에서 <code class="docutils literal notranslate"><span class="pre">작은따옴표</span></code>를 <code class="docutils literal notranslate"><span class="pre">작은</span> <span class="pre">인용부호</span></code>로 대체하는
+새로운 문자열을 생성하는 것을 보여준다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;작은따옴포&#39;</span><span class="p">,</span> <span class="s1">&#39;작은 인용부호&#39;</span><span class="p">)</span>
+<span class="n">d</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;작은따옴표를 사용하는 문자열&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>변수 <code class="docutils literal notranslate"><span class="pre">a</span></code>가 가리키는 값은 변하지 않았다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;작은따옴표를 사용하는 문자열&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong><code class="docutils literal notranslate"><span class="pre">str()</span></code> 함수</strong></p>
+<p>파이썬 객체를 <code class="docutils literal notranslate"><span class="pre">str()</span></code> 함수를 이용하여 문자열로 변환할 수 있다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mf">5.6</span>
+<span class="n">s</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+
+<span class="nb">type</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>str
+</pre></div>
+</div>
+</div>
+</div>
+<div class="info admonition">
+<p class="admonition-title">자료형 <code class="docutils literal notranslate"><span class="pre">str</span></code> 대 함수 <code class="docutils literal notranslate"><span class="pre">str</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">str</span></code>은 문자열 자료형 또는 함수를 가리킬 수 있다.
+혼동을 피하기 위해 함수로 사용되는 경우
+<code class="docutils literal notranslate"><span class="pre">str()</span></code>처럼 괄호를 함께 사용하는 게 좋다.</p>
+</div>
+<p><strong>문자열 인덱싱, 슬라이싱</strong></p>
+<p>문자열 자료형이
+리스트, 튜플 등처럼 일종의 순차 자료형, 즉, 순서가 있는 모음 자료형으로 취급되며,
+인덱싱, 슬라이싱 기능 등이 모두 지원된다.</p>
+<p>인덱싱과 슬라이싱 등에 대해서 <a class="reference internal" href="python_basic_5.html#sec-python-basic-5"><span class="std std-ref">모음 자료형</span></a>에서 자세히 다룬다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;python&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;y&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;pyt&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>백슬래시(\)의 특수 기능</strong></p>
+<div class="warning admonition">
+<p class="admonition-title">백슬래시(\)와 원화 통화기호(₩)</p>
+<p>윈도우 운영체제의 웹브라우저에서는 백슬래시(\)가 원화 통화기호(₩) 모양으로 보이지만,
+동일하게 기능한다.</p>
+</div>
+<p>역슬래시 문자(\)는 특수한 기능을 수행한다.
+예를 들어, 줄바꿈을 의미하는 문자 <code class="docutils literal notranslate"><span class="pre">\n</span></code>,
+탭을 의미하는 문자 <code class="docutils literal notranslate"><span class="pre">\t</span></code> 등에서 역슬래시가 특수한 기능을 수행한다.
+따라서 역슬래시 자체를 문자열에 포함할 때 조심해야 한다.</p>
+<p>예를 들어, 아래와 같은 문자열을 사용하려 해보자.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;12</span><span class="se">\34</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p>그런데 그냥 아래와 같이 지정하면 다르게 작동한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;12</span><span class="se">\34</span><span class="s1">&#39;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12
+</pre></div>
+</div>
+</div>
+</div>
+<p>이유는 <code class="docutils literal notranslate"><span class="pre">\3</span></code>이 특수한 문자를 표현하도록 역슬래시가 기능하기 때문이다.
+(아래 유니코드 설명 참조)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\3</span><span class="s1">&#39;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>따라서 <code class="docutils literal notranslate"><span class="pre">12\34</span></code>로 출력되게 하려면 역슬래시의 기능을 해제해야 하며,
+그러기 위해 역슬래시를 두 번 적어주면 된다.
+그러면 첫째 역슬래시 뒤에 나오는 역슬래시의 특수 기능을 해제시킨다.</p>
+<div class="info admonition">
+<p class="admonition-title">이스케이프</p>
+<p>특정 기능을 작동하지 못하도록 하는 것을 영어로 <strong>이스케이프</strong>(escape)라고 한다.
+예를 들어, 역슬래시의 특수 기능을 이스케이프 시킨다 라고 말할 수 있다.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;12</span><span class="se">\\</span><span class="s1">34&#39;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12\34
+</pre></div>
+</div>
+</div>
+</div>
+<p>그런데 문자열 안에 많은 역슬래시가 포함되어 있다면
+이런 방식은 매우 불편하다.
+하지만 문자열 앞에 영어 알파벳 <code class="docutils literal notranslate"><span class="pre">r</span></code>을 추가하면 간단하게 해결된다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;this\has\no\special\characters&#39;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>this\has\no\special\characters
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>문자열 연산</strong></p>
+<p>두 문자열을 더하면 두 문자열을 이어붙인다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="s1">&#39;this is the first half &#39;</span>
+<span class="n">b</span> <span class="o">=</span> <span class="s1">&#39;and this is the second half&#39;</span>
+
+<span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;this is the first half and this is the second half&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>문자열과 정수를 곱하면 해당 정수 횟수만큼 복제하여 이어붙인다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">*</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;this is the first half this is the first half &#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>문자열 템플릿</strong></p>
+<p>문자열 템플릿은 문자열 안에 일부 변하는 값을 지정할 수 있도록 선언된 문자열이다.
+예를 들어, 아래 문자열 템플릿은 세 개의 값을 임의로 지정할 수 있도록 준비되어 있다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{0:.2f}</span><span class="s1"> </span><span class="si">{1:s}</span><span class="s1">는 </span><span class="si">{2:d}</span><span class="s1"> 미국달러에 해당한다.&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>문자열 템플릿에 지정된 수 만큼의 값을 <code class="docutils literal notranslate"><span class="pre">format()</span></code> 메서드를 이용하여 입력하여
+새로운 문자열을 생성할 수 있다.
+단, <code class="docutils literal notranslate"><span class="pre">format()</span></code> 메서드에 사용되는 인자의 순서는 지정된 순서대로 정해져야 한다.</p>
+<p>예를 들어, <code class="docutils literal notranslate"><span class="pre">template</span></code> 변수가 가리키는 문자열 템플릿의 세 위치에 차례대로
+부동 소수점, 문자열, 정수를 입력해야 하며, 아래와 같이
+차례대로 인자로 사용하면 된다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mf">4.5560</span><span class="p">,</span> <span class="s1">&#39;아르헨티나 페소&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;4.56 아르헨티나 페소는 1 미국달러에 해당한다.&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>중괄호 안에 사용된 숫자와 기호의 의미는 다음과 같다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0:.2f</span></code>는 <code class="docutils literal notranslate"><span class="pre">format()</span></code> 메서드의 첫째 인자인 부동 소수점이 자리하며 소수점 이하 두 자리까지 표기</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1:s</span></code>는 <code class="docutils literal notranslate"><span class="pre">format()</span></code> 메서드의 둘째 인자인 문자열이 자리하는 자리</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2:d</span></code>는 <code class="docutils literal notranslate"><span class="pre">format()</span></code> 메서드의 셋째 인자인 정수가 위치하는 자리</p></li>
+</ul>
+<p>콜론(<code class="docutils literal notranslate"><span class="pre">:</span></code>)을 포함하여 그 이후에 해당하는 부분은 입력될 값들의 자료형을 안내하는 역할을 수행한다.
+하지만 의무사항은 아니며 다만, 사용되는 값에 대한 정보를 제공하거나
+아니면 보다 서식을 갖춘 문자열이 출력하도록 사용된다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{0}</span><span class="s1"> </span><span class="si">{1}</span><span class="s1">는 </span><span class="si">{2}</span><span class="s1"> 미국달러에 해당한다.&#39;</span>
+
+<span class="n">template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mf">4.5560</span><span class="p">,</span> <span class="s1">&#39;아르헨티나 페소&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;4.556 아르헨티나 페소는 1 미국달러에 해당한다.&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>f-문자열</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">format()</span></code> 메서드를 사용하는 대신에
+요즘에는 f-문자열을 보다 많이 사용한다.
+이유는 보다 편리한 사용성 때문이다.
+f-문자열은 문자열 앞에 영어 알파벳 f를 추가하기만 하면 되며
+문자열 안에 변수를 중괄호로 감싸 직접 대입한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mf">4.5560</span>
+<span class="n">b</span> <span class="o">=</span> <span class="s1">&#39;아르헨티나 페소&#39;</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">template</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s1">는 </span><span class="si">{</span><span class="n">c</span><span class="si">}</span><span class="s1"> 미국달러에 해당한다.&#39;</span>
+
+<span class="n">template</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;4.556 아르헨티나 페소는 1 미국달러에 해당한다.&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>문자열 템플릿에서처럼 변수가 가리키는 값에 서식을 지정할 수 있다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">template</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">a</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">b</span><span class="si">:</span><span class="s1">s</span><span class="si">}</span><span class="s1">는 </span><span class="si">{</span><span class="n">c</span><span class="si">:</span><span class="s1">d</span><span class="si">}</span><span class="s1"> 미국달러에 해당한다.&#39;</span>
+
+<span class="n">template</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;4.56 아르헨티나 페소는 1 미국달러에 해당한다.&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id2">
+<h2><span class="section-number">3.4. </span>유니코드와 바이트<a class="headerlink" href="python_basic_3.html#id2" title="Link to this heading">#</a></h2>
+<p><strong>유니코드</strong><font size='2'>unicode</font>는 순전히 키보드만을 이용하여 문자를 표현하는 코드표 모음집이며 영어 알파벳과 한글을 포함하여 거의 모든 언어의 문자를 지원한다.
+파이썬 또한 유니코드를 기본적으로 지원한다.</p>
+<p>반면에 <strong>바이트</strong><font size='2'>bytes</font>는
+문자가 컴퓨터가 이해할 수 있는 형태로 변환된 값이다.
+유니코드를 바이트로 인코딩(변환, encoding)하는 방식은 일반적으로 <strong>UTF-8</strong> 방식을 따른다.
+반면에 한글에 특화된 인코딩 방식으로 <strong>EUC-KR</strong>, <strong>CP-949</strong> 등이 있다.
+따라서 사용하는 웹브라우저에서 한글 또는 특수 문자가 깨져 보이는 경우 언급한 세 가지 인코딩 방식 중 하나로 설정해야 한다.
+요즘은 UTF-8 인코딩이 대세이지만 다른 인코딩 방식도 존재한다는 사실 정도는 상식으로 알고 있어야 한다.</p>
+<p>예를 들어, 아래는 스페인어(Spanish)를 의미하는 스페인 단어 “español”를 가리키는 변수를 선언한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">val</span> <span class="o">=</span> <span class="s2">&quot;español&quot;</span>
+<span class="n">val</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;español&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>UTF-8 방식으로 바이트로 인코딩하면 사람은 알아볼 수 없게 된다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">val_utf8</span> <span class="o">=</span> <span class="n">val</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+<span class="n">val_utf8</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;espa\xc3\xb1ol&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>인코딩된 값의 자료형은 <code class="docutils literal notranslate"><span class="pre">bytes</span></code>이다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">val_utf8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bytes
+</pre></div>
+</div>
+</div>
+</div>
+<p>인코딩 방식을 안다면 유니코드로 디코딩<font size='2'>decoding</font>(변환 되돌리기)할 수 있다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">val_utf8</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;español&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="info admonition">
+<p class="admonition-title">파일 객체와 <code class="docutils literal notranslate"><span class="pre">bytes</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">bytes</span></code> 자료형의 객체는 파일<font size='2'>file</font> 다루면서 흔하게 접한다.</p>
+</div>
+</section>
+<section id="bool">
+<h2><span class="section-number">3.5. </span>부울 자료형: <code class="docutils literal notranslate"><span class="pre">bool</span></code><a class="headerlink" href="python_basic_3.html#bool" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">True</span></code> 또는 <code class="docutils literal notranslate"><span class="pre">False</span></code>로 계산되는 객체(값)이
+<strong>부울 자료형</strong> <code class="docutils literal notranslate"><span class="pre">bool</span></code>에 속한다.
+부울 자료형과 관려된 연산자는 논리곱 연산자 <code class="docutils literal notranslate"><span class="pre">and</span></code>, 논리합 연산자 <code class="docutils literal notranslate"><span class="pre">or</span></code>가 대표적이며,
+두 연산자의 기능은 일반적으로 알려진 것과 동일하다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kc">True</span> <span class="ow">and</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kc">False</span> <span class="ow">or</span> <span class="kc">True</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>비교 연산자</strong></p>
+<p>비교 연산의 결과는 모두 부울값이다.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p>비교 연산자</p></th>
+<th class="head text-left"><p>설명</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>a == b</p></td>
+<td class="text-left"><p>a와 b가 동일한 값을 가리키는지 여부 판단</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>a != b</p></td>
+<td class="text-left"><p>a와 b가 서로 다른 값을 가리키는지 여부 판단</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>a &lt; b</p></td>
+<td class="text-left"><p>a가 b보다 작은지 여부 판단</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>a &lt;= b</p></td>
+<td class="text-left"><p>a가 b보다 작거나 같은지 여부 판단</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>a &gt; b</p></td>
+<td class="text-left"><p>a가 b보다 큰지 여부 판단</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>a &gt;= b</p></td>
+<td class="text-left"><p>a가 b보다 크거나 같은지 여부 판단</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>a is b</p></td>
+<td class="text-left"><p>a와 b가 동일한 위치에 저장된 값을 참조하는지 여부 판단</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>a is not b</p></td>
+<td class="text-left"><p>a와 b가 다른 위치에 저정된 값을 참조하는지 여부 판단</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>세 개의 수가 주어졌을 때 양수가 최소 하나라도 있는 경우에만 <code class="docutils literal notranslate"><span class="pre">True</span></code>를 출력하도록 하는 코드는 다음과 같다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="mi">23</span>
+<span class="n">b</span> <span class="o">=</span> <span class="o">-</span><span class="mi">7</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="k">if</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">b</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p>이에 더해 문자열, 리스트, 튜플, 사전 등 모음 자료형에 특정 값을 포함하는지 여부를
+판단하는 <code class="docutils literal notranslate"><span class="pre">in</span></code> 연산자도 부울 자료형을 생성한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="n">b</span> <span class="ow">in</span> <span class="n">a</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">in</span></code>은 <code class="docutils literal notranslate"><span class="pre">in</span></code>과 정반대 결과를 낸다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">b</span> <span class="ow">in</span> <span class="n">a</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="mi">4</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id3">
+<h2><span class="section-number">3.6. </span>형 변환<a class="headerlink" href="python_basic_3.html#id3" title="Link to this heading">#</a></h2>
+<p>앞서 살펴 본 <code class="docutils literal notranslate"><span class="pre">str()</span></code>는 임의의 값을 문자열로 자료형을 변환한다.
+이처럼 자료형을 변환하는 작업을 <strong>형 변환</strong><font size='2'>type casting</font>이라 한다.
+<code class="docutils literal notranslate"><span class="pre">str()</span></code> 이외에 <code class="docutils literal notranslate"><span class="pre">bool()</span></code>, <code class="docutils literal notranslate"><span class="pre">int()</span></code>, <code class="docutils literal notranslate"><span class="pre">float()</span></code> 등도 형 변환 함수이며 인자로 들어온 값을 각각
+부울, 정수, 부동 소수점으로 변환한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;3.14159&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fval</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fval</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.14159
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">fval</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>float
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">int()</span></code> 함수는 부동 소수점에서 소수점 이하를 버리고 정수를 반환한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span><span class="p">(</span><span class="n">fval</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">int()</span></code> 함수는 문자열도 직접 정수로 반환한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span><span class="p">(</span><span class="s1">&#39;334&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>334
+</pre></div>
+</div>
+</div>
+</div>
+<p>단, 인자로 사용된 값에 따라 오류가 발생할 수 있다.
+예를 들어 <code class="docutils literal notranslate"><span class="pre">str()</span></code> 함수의 인자로 사용된
+문자열이 정수 형식이 아니면 오류가 발생한다.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="o">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span>                                <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">8</span><span class="o">-</span><span class="mi">2</span><span class="n">c4720ab420a</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">----&gt;</span> <span class="mi">1</span> <span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+<span class="ne">ValueError</span><span class="p">:</span> <span class="n">invalid</span> <span class="n">literal</span> <span class="k">for</span> <span class="nb">int</span><span class="p">()</span> <span class="k">with</span> <span class="n">base</span> <span class="mi">10</span><span class="p">:</span> <span class="s1">&#39;3.14159&#39;</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">bool()</span></code> 함수는 0에 대해서만 <code class="docutils literal notranslate"><span class="pre">False</span></code>를 반환한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">bool</span><span class="p">(</span><span class="n">fval</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">bool</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>False
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">bool</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="none">
+<h2><span class="section-number">3.7. </span><code class="docutils literal notranslate"><span class="pre">None</span></code> 값<a class="headerlink" href="python_basic_3.html#none" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">None</span></code>은 어떤 의미도 없는 값, 소위 널(null)값이며,
+문법적으로 <code class="docutils literal notranslate"><span class="pre">NoneType</span></code> 자료형의 유일한 값이다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NoneType
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">a</span> <span class="ow">is</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">b</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong><code class="docutils literal notranslate"><span class="pre">None</span></code> 활용법</strong></p>
+<p>함수를 정의할 때 함수의 인자가 경우에 따라 추가될 수 있을 때를 대비해서 키워드 인자로 사용되곤 한다.
+예를 들어, 아래 <code class="docutils literal notranslate"><span class="pre">add_and_maybe_multiply()</span></code> 함수의 셋째 인자는 기본적으로 <code class="docutils literal notranslate"><span class="pre">None</span></code> 이지만,
+경우에 따라 다른 값을 지정하여 사용할 수 있도록 활용되고 있다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_and_maybe_multiply</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+
+    <span class="k">if</span> <span class="n">c</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">*</span> <span class="n">c</span>
+
+    <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>키워드 인자를 별도로 지정하지 않으면 지정된 값을 사용한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">add_and_maybe_multiply</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># 2 + 3 </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+</pre></div>
+</div>
+</div>
+</div>
+<p>키워드 인자를 별도로 지정하면 그 값을 사용한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">add_and_maybe_multiply</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="c1"># (2 + 3) * 4</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id4">
+<h2><span class="section-number">3.8. </span>날짜와 시간<a class="headerlink" href="python_basic_3.html#id4" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">datetime</span></code> 모듈은 날짜와 시간과 관련된 유용한 클래스를 제공한다.
+대표적으로 아래 세 개의 클래스가 활용된다.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">datetime</span></code>: 날짜와 시간</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">date</span></code>: 날짜</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">time</span></code>: 시간</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">date</span><span class="p">,</span> <span class="n">time</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>년-월-일-시-분-초 정보를 담은 객체는 아래와 같이 생성한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">datetime</span></code> 객체는 년-월-일-시-분-초를 각각 따로 제공하는 속성 변수를 갖고 있다.
+예를 들어, 일(day) 속성은 아래와 같이 확인한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt</span><span class="o">.</span><span class="n">day</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
+</pre></div>
+</div>
+</div>
+</div>
+<p>분(minute) 속성은 다음과 같이 확인한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt</span><span class="o">.</span><span class="n">minute</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+</pre></div>
+</div>
+</div>
+</div>
+<p>날짜 정보만 갖는 <code class="docutils literal notranslate"><span class="pre">date</span></code> 클래스의 객체로의 변환은 <code class="docutils literal notranslate"><span class="pre">date()</span></code> 메서드를 이용한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt</span><span class="o">.</span><span class="n">date</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>datetime.date(2021, 3, 2)
+</pre></div>
+</div>
+</div>
+</div>
+<p>시간 정보만 갖는 <code class="docutils literal notranslate"><span class="pre">time</span></code> 클래스의 객체로의 변환은 <code class="docutils literal notranslate"><span class="pre">time()</span></code> 메서드를 이용한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>datetime.time(17, 5, 1)
+</pre></div>
+</div>
+</div>
+</div>
+<p>일상적으로 사용하는 날짜-시간 표기법으로 변환하려면 <code class="docutils literal notranslate"><span class="pre">strftime()</span></code> 메서드를 이용한다.
+단, 인자로 어떤 포맷(format)을 따를지 지정해야 한다.</p>
+<p>예를 들어, 서양식은 24시간 형식을 따르면서, <code class="docutils literal notranslate"><span class="pre">요일,</span> <span class="pre">달-일-년</span> <span class="pre">시:분</span></code>으로 많이 보여준다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%A, %m/</span><span class="si">%d</span><span class="s1">/%Y %H:%M&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Tuesday, 03/02/2021 17:05&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>반면에 한국식은 오전/오후를 구분하여 12시간제를 따르면서, <code class="docutils literal notranslate"><span class="pre">년-월-일(요일)</span> <span class="pre">시:분</span></code>으로 많이 보여준다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y/%m/</span><span class="si">%d</span><span class="s1">(%A) %I:%M%p&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;2021/03/02(Tuesday) 05:05PM&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="info admonition">
+<p class="admonition-title"><code class="docutils literal notranslate"><span class="pre">datetime</span></code> 모듈 공식 문서</p>
+<p>날짜와 시간과 관련해서 제공되는
+보다 다양한 포맷<font size='2'>format</font>에 대한 정보는
+<a class="reference external" href="https://docs.python.org/ko/3/library/datetime.html">datetime 모듈의 공식문서</a>에서
+확인할 수 있다.</p>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">strptime()</span></code> 함수는 문자열을 해석하여 <code class="docutils literal notranslate"><span class="pre">datetime</span></code> 클래스의 객체로 변환한다.
+대신에 입력된 문자가 어떤 포맷을 따르는가에 대한 정보를 둘째 인자로 함께 전달해야 한다.
+0초는 보여주지 않음에 주의한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="s1">&#39;20200228&#39;</span><span class="p">,</span> <span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>datetime.datetime(2020, 2, 28, 0, 0)
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">datetime</span></code> 클래스의 객체는 불변(immutable)이다.
+하지만 문자열의 경우와 비슷하게 특정 값을 이용하여 새로운 <code class="docutils literal notranslate"><span class="pre">datetime</span></code> 클래스의
+객체를 생성할 수는 있다.
+예를 들어, <code class="docutils literal notranslate"><span class="pre">replace()</span></code> 메서드는 년, 월, 일, 시, 분, 초 각각의 값을 다른 값으로 지정하여
+새로운 <code class="docutils literal notranslate"><span class="pre">datetime</span></code> 클래스의 객체를 생성한다.</p>
+<p>아래 예제는 분과 초를 모두 0으로 설정하여 새로운 <code class="docutils literal notranslate"><span class="pre">datetime</span></code> 객체를 생성한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">minute</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">second</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>datetime.datetime(2021, 3, 2, 17, 0)
+</pre></div>
+</div>
+</div>
+</div>
+<p>두 <code class="docutils literal notranslate"><span class="pre">datetime</span></code> 객체의 차(difference)는
+일(days)과 초(seconds) 단위로 계산되어 <code class="docutils literal notranslate"><span class="pre">timedelta</span></code> 클래스의 객체를 반환한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt2</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">59</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">delta</span> <span class="o">=</span> <span class="n">dt2</span> <span class="o">-</span> <span class="n">dt</span>
+<span class="n">delta</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>datetime.timedelta(days=105, seconds=24839)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">delta</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>datetime.timedelta
+</pre></div>
+</div>
+</div>
+</div>
+<p>실제로 <code class="docutils literal notranslate"><span class="pre">dt</span> <span class="pre">+</span> <span class="pre">deta</span> <span class="pre">==</span> <span class="pre">dt2</span></code>는 참이된다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>datetime.datetime(2021, 3, 2, 17, 5, 1)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt</span> <span class="o">+</span> <span class="n">delta</span> <span class="o">==</span> <span class="n">dt2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="python_basic_2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>기초 문법</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="python_basic_4.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>제어문</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="python_basic_3.html#int">3.1. 정수 자료형: <code class="docutils literal notranslate"><span class="pre">int</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="python_basic_3.html#float">3.2. 부동 소수점 자료형: <code class="docutils literal notranslate"><span class="pre">float</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="python_basic_3.html#str">3.3. 문자열 자료형: <code class="docutils literal notranslate"><span class="pre">str</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="python_basic_3.html#id2">3.4. 유니코드와 바이트</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="python_basic_3.html#bool">3.5. 부울 자료형: <code class="docutils literal notranslate"><span class="pre">bool</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="python_basic_3.html#id3">3.6. 형 변환</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="python_basic_3.html#none">3.7. <code class="docutils literal notranslate"><span class="pre">None</span></code> 값</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="python_basic_3.html#id4">3.8. 날짜와 시간</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 코딩알지
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js@digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js@digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
